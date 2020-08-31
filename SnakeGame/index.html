@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="start">
+        <div class="text">
+            <h1>SNAKE GAME</h1>
+            <button id="start-game">Start</button>
+        </div>
+    </div>
+    <div id="guide">
+        <div class="text">
+            <h1>Guide</h1>
+            <div>
+                <p>Press Enter to start the game</p>
+                <p>Use arrow keys to control the snake</p>
+            </div>
+            <button id="exit-guide">OK</button>
+        </div>
+    </div>
+    <div id="finish">
+        <div class="text">
+            <div>
+                <h1>Your score </h1>
+                <div id="score">0</div>
+            </div>
+            <div class="button">
+                <button id="restart-game">Restart</button>
+                <button id="exit-game">Exit</button>
+            </div>
+        </div>
+    </div>
+    <div id="end-restart"></div>
+    <canvas id="canvas" style="background-color: greenyellow; border: 10px solid Black;"></canvas>
+</body>
+<script src="./snake.js"></script>
+<script src="./main.js"></script>
+
+</html>
