@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af63205e0f0d45a1b632b70eeb3ef2cc" Name="Diagram1">
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Course" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.CourseTopic" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Enrollment" Width="1.5" PointX="6.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Staff" Width="1.5" PointX="6.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Topic" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Trainee" Width="1.5" PointX="4.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AsmWebAppDBModel.Trainer" Width="1.5" PointX="0.875" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__CourseTop__Cours__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__Enrollmen__Cours__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__CourseTop__Topic__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__CourseTop__Train__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__Enrollmen__Topic__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="AsmWebAppDBModel.FK__Enrollmen__Train__46E78A0C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
