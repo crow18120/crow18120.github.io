@@ -10,14 +10,56 @@ using ASM_WEB_APP.Models;
 
 namespace ASM_WEB_APP.Controllers
 {
+    [Authorize]
     public class CourseTopicsController : Controller
     {
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: CourseTopics
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchCourse, string searchTopic, string searchTrainer)
         {
-            var courseTopics = db.CourseTopics.Include(c => c.Course).Include(c => c.Topic).Include(c => c.Trainer);
+            ViewBag.CourseSortParm = String.IsNullOrEmpty(sortOrder) ? "course_desc" : "";
+            ViewBag.TopicSortParm = sortOrder == "Topic" ? "topic_desc" : "Topic";
+            ViewBag.TrainerSortParm = sortOrder == "Trainer" ? "trainer_desc" : "Trainer";
+
+            var courseTopics = from ctp in db.CourseTopics select ctp;
+
+            if (!String.IsNullOrEmpty(searchCourse))
+            {
+                courseTopics = courseTopics.Where(ctp => ctp.Course.CourseName.Contains(searchCourse));
+            }
+
+            if (!String.IsNullOrEmpty(searchTopic))
+            {
+                courseTopics = courseTopics.Where(ctp => ctp.Topic.TopicName.Contains(searchTopic));
+            }
+
+            if (!String.IsNullOrEmpty(searchTrainer))
+            {
+                courseTopics = courseTopics.Where(ctp => (ctp.Trainer.LastName + " " + ctp.Trainer.FirstName).Contains(searchTrainer) || ctp.Trainer.LastName.Contains(searchTrainer) || ctp.Trainer.FirstName.Contains(searchTrainer));
+            }
+
+            switch (sortOrder)
+            {
+                case "course_desc":
+                    courseTopics = courseTopics.OrderByDescending(ctp => ctp.Course.CourseName);
+                    break;
+                case "topic_desc":
+                    courseTopics = courseTopics.OrderByDescending(ctp => ctp.Topic.TopicName);
+                    break;
+                case "trainer_desc":
+                    courseTopics = courseTopics.OrderByDescending(ctp => ctp.Trainer.FirstName);
+                    break;
+                case "Topic":
+                    courseTopics = courseTopics.OrderBy(ctp => ctp.Topic.TopicName);
+                    break;
+                case "Trainer":
+                    courseTopics = courseTopics.OrderBy(ctp => ctp.Trainer.FirstName);
+                    break;
+                default:
+                    courseTopics = courseTopics.OrderBy(ctp => ctp.Course.CourseName);
+                    break;
+            }
             return View(courseTopics.ToList());
         }
 
@@ -33,6 +75,16 @@ namespace ASM_WEB_APP.Controllers
             {
                 return HttpNotFound();
             }
+            var enrollments = db.Enrollments.ToList();
+            var viewBag = new List<Enrollment>(); 
+            foreach(var e in enrollments)
+            {
+                if(e.CourseID == courseTopic.CourseID && e.TopicID == courseTopic.TopicID)
+                {
+                    viewBag.Add(e); 
+                }
+            }
+            ViewBag.Enrollments = viewBag;
             return View(courseTopic);
         }
 

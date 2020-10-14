@@ -38,6 +38,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StaffID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Staffs", htmlAttributes: new { @class = "btn btn-default col-md-1" })
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.StaffID }, htmlAttributes: new { @class = "btn btn-primary col-md-1" })
+    }
+
+    <br />
 </p>

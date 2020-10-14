@@ -1,0 +1,23 @@
+﻿@if(Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Logout", "Logout", "Authen")</li>
+    </ul>
+
+    if(User.IsInRole("Admin"))
+    {
+        @Html.Partial("_AdminMenu")
+    }
+    if(User.IsInRole("Staff"))
+    {
+        @Html.Partial("_StaffMenu")
+    }
+}
+
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Login", "Login", "Authen")</li>
+    </ul>
+}
+

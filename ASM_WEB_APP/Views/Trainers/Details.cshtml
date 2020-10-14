@@ -46,6 +46,13 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TrainerID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Trainers", htmlAttributes: new { @class = "btn btn-default col-md-1" })  
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-primary col-md-1" })
+    }
+
+    <br />
 </p>
+
+

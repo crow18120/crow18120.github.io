@@ -10,6 +10,7 @@ using ASM_WEB_APP.Models;
 
 namespace ASM_WEB_APP.Controllers
 {
+    [Authorize]
     public class EnrollmentsController : Controller
     {
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
@@ -135,6 +136,55 @@ namespace ASM_WEB_APP.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddTrainee(int courseID, int topicID)
+        {
+            var course = new List<Course>();
+            var topic = new List<Topic>();
+            course.Add(db.Courses.Find(courseID));
+            topic.Add(db.Topics.Find(topicID));
+
+            var enrollments = db.Enrollments.ToList();
+            var trainees = db.Trainees.ToList();
+            foreach(var e in enrollments)
+            {
+                if(e.CourseID == courseID && e.TopicID == topicID)
+                {
+                    trainees.Remove(db.Trainees.Find(e.TraineeID));
+                }
+            }
+            ViewBag.CourseID = new SelectList(course, "CourseID", "CourseName"); 
+            ViewBag.TopicID = new SelectList(topic, "TopicID", "TopicName");
+            ViewBag.TraineeID = new SelectList(trainees, "TraineeID", "LastName");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTrainee([Bind(Include = "ID,CourseID,TopicID,TraineeID,Grade")] Enrollment enrollment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Enrollments.Add(enrollment);
+                db.SaveChanges();
+                var ctps = db.CourseTopics.ToList();
+                var id = 0;
+                foreach( var ctp in ctps)
+                {
+                    if(ctp.CourseID ==  enrollment.CourseID && ctp.TopicID == enrollment.TopicID)
+                    {
+                        id = ctp.ID;
+                        break;
+                    }
+                }
+                return RedirectToAction("Details" + "/" + id.ToString(), "CourseTopics");
+            }
+
+            ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", enrollment.CourseID);
+            ViewBag.TopicID = new SelectList(db.Topics, "TopicID", "TopicName", enrollment.TopicID);
+            ViewBag.TraineeID = new SelectList(db.Trainees, "TraineeID", "LastName", enrollment.TraineeID);
+            return View(enrollment);
         }
     }
 }

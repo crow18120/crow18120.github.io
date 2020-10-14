@@ -10,6 +10,7 @@ using ASM_WEB_APP.Models;
 
 namespace ASM_WEB_APP.Controllers
 {
+    [Authorize]
     public class TraineesController : Controller
     {
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();

@@ -10,6 +10,7 @@ using ASM_WEB_APP.Models;
 
 namespace ASM_WEB_APP.Controllers
 {
+    [Authorize]
     public class TrainersController : Controller
     {
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
@@ -78,7 +79,7 @@ namespace ASM_WEB_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TrainerID,LastName,FirstName,UserName,Address")] Trainer trainer)
+        public ActionResult Edit([Bind(Include = "TrainerID,LastName,FirstName,Address")] Trainer trainer)
         {
             if (ModelState.IsValid)
             {
@@ -122,6 +123,32 @@ namespace ASM_WEB_APP.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ChangePassword(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Trainer trainer = db.Trainers.Find(id);
+            if (trainer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainer);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(int trainerID, string userName, string currentPassword, string newPassword)
+        {
+            if (!AuthenController.ChangePassword(userName, currentPassword, newPassword).Succeeded)
+            {
+                ModelState.AddModelError("", "Can't change password. Something's wrong.");
+                Trainer trainer = db.Trainers.Find(trainerID);
+                return View(trainer);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

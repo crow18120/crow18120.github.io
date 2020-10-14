@@ -10,6 +10,7 @@ using ASM_WEB_APP.Models;
 
 namespace ASM_WEB_APP.Controllers
 {
+    [Authorize]
     public class StaffsController : Controller
     {
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
@@ -36,6 +37,7 @@ namespace ASM_WEB_APP.Controllers
         }
 
         // GET: Staffs/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,12 +48,15 @@ namespace ASM_WEB_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffID,LastName,FirstName,UserName")] Staff staff)
+        public ActionResult Create([Bind(Include = "LastName,FirstName,UserName")] Staff staff)
         {
             if (ModelState.IsValid)
             {
                 db.Staffs.Add(staff);
                 db.SaveChanges();
+
+                AuthenController.CreateAccount(staff.UserName, "123456", "Staff");
+
                 return RedirectToAction("Index");
             }
 
@@ -59,6 +64,7 @@ namespace ASM_WEB_APP.Controllers
         }
 
         // GET: Staffs/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,12 +90,14 @@ namespace ASM_WEB_APP.Controllers
             {
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(staff);
         }
 
         // GET: Staffs/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,5 +131,33 @@ namespace ASM_WEB_APP.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ChangePassword(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Staff staff = db.Staffs.Find(id);
+            if (staff == null)
+            {
+                return HttpNotFound();
+            }
+            return View(staff);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(int staffID, string userName, string currentPassword, string newPassword)
+        {
+            if (!AuthenController.ChangePassword(userName, currentPassword, newPassword).Succeeded)
+            {
+                ModelState.AddModelError("", "Can't change password. Something's wrong.");
+                Staff staff = db.Staffs.Find(staffID);
+                return View(staff);
+            }
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

@@ -11,12 +11,22 @@ namespace ASM_WEB_APP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Staff
     {
         public int StaffID { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string LastName { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
         public string UserName { get; set; }
     }
 }

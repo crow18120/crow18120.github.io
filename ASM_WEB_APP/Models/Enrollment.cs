@@ -11,13 +11,16 @@ namespace ASM_WEB_APP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Enrollment
     {
         public int ID { get; set; }
         public Nullable<int> CourseID { get; set; }
         public Nullable<int> TopicID { get; set; }
         public Nullable<int> TraineeID { get; set; }
+
+        [Range(0, 10)]
         public Nullable<int> Grade { get; set; }
     
         public virtual Course Course { get; set; }

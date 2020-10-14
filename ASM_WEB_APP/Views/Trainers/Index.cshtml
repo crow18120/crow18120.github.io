@@ -8,7 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        @Html.ActionLink("Create New", "Create", "Trainer", htmlAttributes: new { @class = "btn btn-warning" })
+    }
 </p>
 <table class="table">
     <tr>
@@ -37,9 +40,12 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TrainerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TrainerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TrainerID })
+            @Html.ActionLink("Details", "Details", new { id = item.TrainerID }, htmlAttributes: new { @class = "btn btn-default col-md-4" })
+            @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.TrainerID }, htmlAttributes: new { @class = "btn btn-primary col-md-4" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.TrainerID }, htmlAttributes: new { @class = "btn btn-danger col-md-4" })
+            }
         </td>
     </tr>
 }

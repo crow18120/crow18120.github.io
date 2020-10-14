@@ -31,7 +31,7 @@
     <Key>
       <PropertyRef Name="StaffID" />
     </Key>
-    <Property Name="StaffID" Type="int" Nullable="false" />
+    <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />
@@ -40,7 +40,7 @@
     <Key>
       <PropertyRef Name="TopicID" />
     </Key>
-    <Property Name="TopicID" Type="int" Nullable="false" />
+    <Property Name="TopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TopicName" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
   </EntityType>
@@ -48,7 +48,7 @@
     <Key>
       <PropertyRef Name="TraineeID" />
     </Key>
-    <Property Name="TraineeID" Type="int" Nullable="false" />
+    <Property Name="TraineeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />
@@ -58,7 +58,7 @@
     <Key>
       <PropertyRef Name="TrainerID" />
     </Key>
-    <Property Name="TrainerID" Type="int" Nullable="false" />
+    <Property Name="TrainerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />

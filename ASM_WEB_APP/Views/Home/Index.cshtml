@@ -2,30 +2,42 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+    .des {
+        height: 100px;
+        overflow: scroll;
+        overflow-x: hidden;
+        text-align: justify;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>
+
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <img src="https://i.imgur.com/WLETpZa.jpg" alt="" style="width: 100%; height: 100%"/>
 </div>
 
+<h1>Topic Catagories</h1>
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+        <h2>Cloud Computing</h2>
+        <p class="des">
+            Cloud Computing has revolutionised the way IT services are delivered and has become an important part of the computing sector. Cloud Computing is internet-hosted computing, which means it uses the internet to deliver data and other IT services such as storage, printing, server facilities and so forth. In other words, the end users or organisations no longer need to have their own extensive network environment on the premises, but can get the same services provided virtually over the internet.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p class="btn btn-default">@Html.ActionLink("Learn more", "Index", "Topics")</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Business Intelligence</h2>
+        <p class="des">
+            Data and information is core to any organisation and business process. The necessity of having meaningful information is the key driver for effective decision- making and problem-solving. Business intelligence has evolved from technologies such as decision support systems (DSS) to include tools and methods associated with data mining, data integration, data quality and data warehousing in conjunction with other information management systems and applications.
+        </p>
+        <p class="btn btn-default">@Html.ActionLink("Learn more", "Index", "Topics")</p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Application Development</h2>
+        <p class="des">Software drives business and developers drive software – the world is reliant on software, and programming is at the heart of this. Professionalism and critical thinking, supported by an ability to work independently and as part of a team are core skills of a developer. If you can think logically and you enjoy exploring and dismantling problems, working with others to consider requirements and creating ideas and possible solutions you can gain the experience and learn the skills needed to excel as an Application Developer.</p>
+        <p class="btn btn-default">@Html.ActionLink("Learn more", "Index", "Topics")</p>
     </div>
 </div>

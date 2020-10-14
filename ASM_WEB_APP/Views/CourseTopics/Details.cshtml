@@ -6,9 +6,11 @@
 }
 
 <h2>Details</h2>
-
+<p>
+    @Html.ActionLink("Back to List", "Index", "CourseTopics", htmlAttributes: new { @class = "btn btn-default" })
+</p>
 <div>
-    <h4>CourseTopic</h4>
+    <h3>Session</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,16 +30,73 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Trainer.LastName)
+            Trainer
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Trainer.LastName)
+            @Html.DisplayFor(model => model.Trainer.FirstName)
         </dd>
 
     </dl>
+    <p>@if (User.IsInRole("Staff"))
+    {
+        @Html.ActionLink("Edit Session", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })
+    }
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <h3>List of Trainees</h3>
+    <p>
+        @if (User.IsInRole("Staff"))
+        {
+            @Html.ActionLink("Add Trainee", "AddTrainee", "Enrollments", new { courseID = Model.CourseID, topicID = Model.TopicID },htmlAttributes: new { @class = "btn btn-warning" })
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Trainee
+            </th>
+            @if (User.IsInRole("Staff"))
+            {
+                <th>
+                    UserName
+                </th>
+            }
+            <th>
+                Address
+            </th>
+            <th>
+                Grade
+            </th>
+            <th></th>
+        </tr>
+        
+        @foreach (var item in ViewBag.Enrollments)
+        {
+            <tr>
+                <td>
+                    @item.Trainee.LastName 
+                    @item.Trainee.FirstName
+                </td>
+                <td>
+                    @item.Trainee.UserName
+                </td>
+                <td>
+                    @item.Trainee.Address
+                </td>
+                <td>
+                    @item.Grade
+                </td>
+                <td>
+                    @if (User.IsInRole("Staff"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-danger col-md-6" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

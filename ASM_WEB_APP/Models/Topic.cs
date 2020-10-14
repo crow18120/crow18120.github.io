@@ -11,7 +11,8 @@ namespace ASM_WEB_APP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Topic
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,13 @@ namespace ASM_WEB_APP.Models
         }
     
         public int TopicID { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
+        [Display(Name = "Topic Name")]
         public string TopicName { get; set; }
+
+        [StringLength(100, MinimumLength = 3)]
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

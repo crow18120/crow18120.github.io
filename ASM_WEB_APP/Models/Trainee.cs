@@ -11,7 +11,8 @@ namespace ASM_WEB_APP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Trainee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,20 @@ namespace ASM_WEB_APP.Models
         }
     
         public int TraineeID { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
         public string LastName { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
         public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
         public string UserName { get; set; }
+
+        [StringLength(60, MinimumLength = 3)]
         public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
