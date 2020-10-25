@@ -102,7 +102,7 @@ namespace ASM_WEB_APP.Controllers
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);
 
-            userManager.Delete(FindUser(userName)); 
+            userManager.Delete(userManager.FindByName(userName)); 
         }
 
         public static IdentityUser FindUser(string username)
