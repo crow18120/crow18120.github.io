@@ -6,9 +6,18 @@
 }
 
 <h2>Details</h2>
-
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    {
+        @Html.ActionLink("Go to Trainer List", "Index", "Trainers", null, htmlAttributes: new { @class = "btn btn-default" })
+    }
+    @if (User.IsInRole("Staff"))
+    {
+        @Html.ActionLink("Go to Session List", "Index", "CourseTopics", null, htmlAttributes: new { @class = "btn btn-default" })
+    }
+</p>
 <div>
-    <h4>Trainer</h4>
+    <h3>Trainer</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,13 +55,56 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index", "Trainers", htmlAttributes: new { @class = "btn btn-default col-md-1" })  
-    @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
+    @if (User.IsInRole("Staff") || User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-primary col-md-1" })
+        @Html.ActionLink("Edit Trainer", "Edit", new { id = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-primary" })
     }
-
-    <br />
+    else
+    {
+        @Html.ActionLink("Edit your Profile", "Edit", new { id = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-primary" })
+        @Html.ActionLink("Change Password", "ChangePassword", new { id = Model.TrainerID}, htmlAttributes: new { @class = "btn btn-danger"})
+    }
 </p>
+@if (User.IsInRole("Staff"))
+{
+<div>
+    <h3>Assigned Session</h3>
+    <p>
+        @if (User.IsInRole("Staff"))
+        {
+            @Html.ActionLink("Add Session", "AddSession", "CourseTopics", new { TrainerID = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-warning" })
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Course
+            </th>
+            <th>
+                Topic
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.CourseTopics)
+        {
+            <tr>
+                <td>
+                    @item.Course.CourseName
+                </td>
+                <td>
+                    @item.Topic.TopicName
+                </td>
+                <td>
+                    @Html.ActionLink("Detail", "Details", "CourseTopics", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-default col-md-4" })
+                    @Html.ActionLink("Delete", "Delete", "CourseTopics", new { id = item.ID, con = "Trainers", act = "Details/" + item.TrainerID.ToString() }, htmlAttributes: new { @class = "btn btn-danger col-md-4" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+}
 
 

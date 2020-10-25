@@ -10,10 +10,17 @@
 <p>
     @Html.ActionLink("Create New", "Create", "Trainees", htmlAttributes: new { @class = "btn btn-warning" })
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find: @Html.TextBox("SearchTrainee")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            Trainee
+            @Html.ActionLink("Trainee", "Index", new { sortOrder = ViewBag.TraineeSortParm})
         </th>
         <th>
             User Name
@@ -24,27 +31,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.TraineeID }, htmlAttributes: new { @class = "btn btn-default col-md-4" }) 
-            @if(User.IsInRole("Staff"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id=item.TraineeID }, htmlAttributes: new { @class = "btn btn-primary col-md-4" }) 
-                @Html.ActionLink("Delete", "Delete", new { id=item.TraineeID }, htmlAttributes: new { @class = "btn btn-danger col-md-4" })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.TraineeID }, htmlAttributes: new { @class = "btn btn-default col-md-4" })
+                @if (User.IsInRole("Staff"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TraineeID }, htmlAttributes: new { @class = "btn btn-danger col-md-4" })
+                }
+            </td>
+        </tr>
+    }
 
 </table>

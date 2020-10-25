@@ -6,7 +6,9 @@
 }
 
 <h2>Details</h2>
-
+<p>
+    @Html.ActionLink("Back to List", "Index", "Courses", htmlAttributes: new { @class = "btn btn-default"})
+</p>
 <div>
     <h4>Course</h4>
     <hr />
@@ -28,8 +30,50 @@
         </dd>
 
     </dl>
+    <p>
+        @Html.ActionLink("Edit Course", "Edit", "Courses", new { id = Model.CourseID }, htmlAttributes: new { @class = "btn btn-primary" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div>
+    <h3>List of Topics</h3>
+    <p>
+        @if (User.IsInRole("Staff"))
+        {
+            @Html.ActionLink("Add Topic", "AddTopic", "CourseTopics", new { courseID = Model.CourseID}, htmlAttributes: new { @class = "btn btn-warning" })
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Topic
+            </th>
+            <th>
+                Trainer
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.CourseTopics)
+        {
+            <tr>
+                <td>
+                    @item.Topic.TopicName
+                </td>
+                <td>
+                    @item.Trainer.LastName
+                    @item.Trainer.FirstName
+                </td>
+                <td>
+                    @Html.ActionLink("Detail", "Details", "CourseTopics", new { id = item.ID}, htmlAttributes: new { @class = "btn btn-default col-md-4"})
+                    @if (User.IsInRole("Staff"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", "CourseTopics", new { id = item.ID, con = "Courses", act = "Details/" + Model.CourseID.ToString() }, htmlAttributes: new { @class = "btn btn-danger col-md-4" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

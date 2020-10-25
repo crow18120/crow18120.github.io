@@ -16,9 +16,26 @@ namespace ASM_WEB_APP.Controllers
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: Staffs
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string SearchStaff)
         {
-            return View(db.Staffs.ToList());
+            ViewBag.StaffSortParm = String.IsNullOrEmpty(sortOrder) ? "staff_desc" : "";
+
+            var staffs = from s in db.Staffs select s;
+            if(!String.IsNullOrEmpty(SearchStaff))
+            {
+                staffs = staffs.Where(s => (s.LastName + " " + s.FirstName).Contains(SearchStaff));
+            }
+
+            switch (sortOrder)
+            {
+                case "staff_desc":
+                    staffs = staffs.OrderByDescending(s => s.FirstName);
+                    break;
+                default:
+                    staffs = staffs.OrderBy(s => s.FirstName);
+                    break;
+            }
+            return View(staffs);
         }
 
         // GET: Staffs/Details/5

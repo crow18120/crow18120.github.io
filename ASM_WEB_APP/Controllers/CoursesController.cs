@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using ASM_WEB_APP.Models;
@@ -16,9 +18,25 @@ namespace ASM_WEB_APP.Controllers
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchCourse)
         {
-            return View(db.Courses.ToList());
+            ViewBag.CourseSortParm = String.IsNullOrEmpty(sortOrder) ? "course_desc" : "";
+
+            var courses = from c in db.Courses select c;
+            if (!String.IsNullOrEmpty(searchCourse))
+            {
+                courses = courses.Where(c => c.CourseName.Contains(searchCourse));
+            }
+            switch (sortOrder)
+            {
+                case "course_desc":
+                    courses = courses.OrderByDescending(c => c.CourseName);
+                    break;
+                default:
+                    courses = courses.OrderBy(c => c.CourseName);
+                    break;
+            }
+            return View(courses);
         }
 
         // GET: Courses/Details/5
@@ -32,6 +50,15 @@ namespace ASM_WEB_APP.Controllers
             if (course == null)
             {
                 return HttpNotFound();
+            }
+            ViewBag.CourseTopics = db.CourseTopics.Where(ctp => ctp.CourseID == id);
+            if(db.CourseTopics.Where(ctp => ctp.CourseID == id).ToList().Count == db.Topics.ToList().Count)
+            {
+                ViewBag.IsFull = true;
+            }
+            else
+            {
+                ViewBag.IsFull = false;
             }
             return View(course);
         }
@@ -111,6 +138,16 @@ namespace ASM_WEB_APP.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Courses.Find(id);
+            var coursetopics = db.CourseTopics.Where(ctp => ctp.CourseID == id).ToList();
+            var enrollments = db.Enrollments.Where(e => e.CourseID == id).ToList();
+            foreach(var ctp in coursetopics)
+            {
+                db.CourseTopics.Remove(ctp);
+            }
+            foreach(var e in enrollments)
+            {
+                db.Enrollments.Remove(e);
+            }
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");

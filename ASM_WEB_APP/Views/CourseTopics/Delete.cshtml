@@ -42,8 +42,19 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+            @if(ViewBag.Controller == "Trainers")
+            {
+                @Html.ActionLink("Back", "Details", "Trainers", new { id = Model.TrainerID}, htmlAttributes: new { @class = "btn btn-default"})
+            }
+            @if(ViewBag.Controller == "Courses")
+            {
+                @Html.ActionLink("Back", "Details", "Courses", new { id = Model.CourseID}, htmlAttributes: new { @class = "btn btn-default"})
+            }
+            @if(ViewBag.Controller == "CourseTopics")
+            {
+                @Html.ActionLink("Back", "Index", "CourseTopics", null, htmlAttributes: new { @class = "btn btn-default"})
+            }
         </div>
     }
 </div>

@@ -302,6 +302,14 @@
     <Content Include="Views\Trainers\ChangePassword.cshtml" />
     <Content Include="Views\Shared\_StaffMenu.cshtml" />
     <Content Include="Views\Enrollments\AddTrainee.cshtml" />
+    <Content Include="Views\Shared\_TrainerMenu.cshtml" />
+    <Content Include="Views\CourseTopics\Assigned.cshtml" />
+    <Content Include="Views\CourseTopics\AddSession.cshtml" />
+    <Content Include="Views\CourseTopics\AddTopic.cshtml" />
+    <Content Include="Views\Shared\_TraineeMenu.cshtml" />
+    <Content Include="Views\Enrollments\MarkGrade.cshtml" />
+    <Content Include="Views\Enrollments\EditGrade.cshtml" />
+    <Content Include="Views\Enrollments\Assigned.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

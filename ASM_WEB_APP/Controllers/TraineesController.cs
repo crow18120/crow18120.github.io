@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,9 +17,26 @@ namespace ASM_WEB_APP.Controllers
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: Trainees
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string SearchTrainee)
         {
-            return View(db.Trainees.ToList());
+            ViewBag.TraineeSortParm = String.IsNullOrEmpty(sortOrder) ? "trainee_desc" : "";
+
+            var trainees = from s in db.Trainees select s;
+            if (!String.IsNullOrEmpty(SearchTrainee))
+            {
+                trainees = trainees.Where(s => (s.LastName + " " + s.FirstName).Contains(SearchTrainee));
+            }
+
+            switch (sortOrder)
+            {
+                case "trainee_desc":
+                    trainees = trainees.OrderByDescending(s => s.FirstName);
+                    break;
+                default:
+                    trainees = trainees.OrderBy(s => s.FirstName);
+                    break;
+            }
+            return View(trainees);
         }
 
         // GET: Trainees/Details/5
@@ -26,13 +44,42 @@ namespace ASM_WEB_APP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                foreach (var item in db.Trainees.ToList())
+                {
+                    if (item.UserName == User.Identity.Name)
+                    {
+                        id = item.TraineeID;
+                    }
+                }
             }
             Trainee trainee = db.Trainees.Find(id);
             if (trainee == null)
             {
                 return HttpNotFound();
             }
+
+            var ctpsDB = from ctp in db.CourseTopics
+                         join e in db.Enrollments.Where(e => e.TraineeID == id)
+on new { ctp.CourseID, ctp.TopicID } equals new { e.CourseID, e.TopicID }
+                         select new {
+                             CourseName = ctp.Course.CourseName,
+                             TopicName = ctp.Topic.TopicName,
+                             TrainerName = ctp.Trainer.LastName + " " + ctp.Trainer.FirstName,
+                             Grade = e.Grade,
+                             ID = e.ID
+                         };
+            var info = new List<ExpandoObject>();
+            foreach(var ctp in ctpsDB)
+            {
+                dynamic e = new ExpandoObject();
+                e.CourseName = ctp.CourseName;
+                e.TopicName = ctp.TopicName;
+                e.TrainerName = ctp.TrainerName;
+                e.Grade = ctp.Grade;
+                e.ID = ctp.ID;
+                info.Add(e);
+            }
+            ViewBag.Info = info.ToList();
             return View(trainee);
         }
 
@@ -53,6 +100,8 @@ namespace ASM_WEB_APP.Controllers
             {
                 db.Trainees.Add(trainee);
                 db.SaveChanges();
+
+                AuthenController.CreateAccount(trainee.UserName, "123456", "Trainee");
                 return RedirectToAction("Index");
             }
 
@@ -85,7 +134,7 @@ namespace ASM_WEB_APP.Controllers
             {
                 db.Entry(trainee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/" + trainee.TraineeID.ToString(), "Trainees");
             }
             return View(trainee);
         }
@@ -111,6 +160,12 @@ namespace ASM_WEB_APP.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Trainee trainee = db.Trainees.Find(id);
+            var enrollments = db.Enrollments.Where(e => e.TraineeID == id).ToList();
+
+            foreach (var e in enrollments)
+            {
+                db.Enrollments.Remove(e);
+            }
             db.Trainees.Remove(trainee);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -123,6 +178,32 @@ namespace ASM_WEB_APP.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ChangePassword(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Trainee trainee = db.Trainees.Find(id);
+            if (trainee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainee);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(int traineeID, string userName, string currentPassword, string newPassword)
+        {
+            if (!AuthenController.ChangePassword(userName, currentPassword, newPassword).Succeeded)
+            {
+                ModelState.AddModelError("", "Can't change password. Something's wrong.");
+                Trainee trainee = db.Trainees.Find(traineeID);
+                return View(trainee);
+            }
+            return RedirectToAction("Details/" + traineeID.ToString(), "Trainees");
         }
     }
 }

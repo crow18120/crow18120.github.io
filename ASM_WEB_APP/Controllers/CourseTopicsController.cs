@@ -62,7 +62,17 @@ namespace ASM_WEB_APP.Controllers
             }
             return View(courseTopics.ToList());
         }
-
+        public ActionResult Assigned(int? id) {
+            foreach (var item in db.Trainers.ToList())
+            {
+                if (User.Identity.Name==item.UserName)
+                {
+                    id = item.TrainerID;
+                }
+            }
+            var courseTopic = db.CourseTopics.Where(x => x.TrainerID == id);
+            return View(courseTopic);
+        }
         // GET: CourseTopics/Details/5
         public ActionResult Details(int? id)
         {
@@ -85,6 +95,14 @@ namespace ASM_WEB_APP.Controllers
                 }
             }
             ViewBag.Enrollments = viewBag;
+            if(viewBag.Count == db.Trainees.ToList().Count)
+            {
+                ViewBag.IsFull = true;
+            }
+            else
+            {
+                ViewBag.IsFull = false;
+            }
             return View(courseTopic);
         }
 
@@ -129,9 +147,17 @@ namespace ASM_WEB_APP.Controllers
             {
                 return HttpNotFound();
             }
+
+            var trainers = from t in db.Trainers
+                           select new
+                           {
+                               Trainer = t,
+                               TrainerID = t.TrainerID,
+                               FullName = t.LastName + " " + t.FirstName
+                           };
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", courseTopic.CourseID);
             ViewBag.TopicID = new SelectList(db.Topics, "TopicID", "TopicName", courseTopic.TopicID);
-            ViewBag.TrainerID = new SelectList(db.Trainers, "TrainerID", "LastName", courseTopic.TrainerID);
+            ViewBag.TrainerID = new SelectList(trainers.ToList(), "TrainerID", "FullName", courseTopic.TrainerID);
             return View(courseTopic);
         }
 
@@ -146,7 +172,7 @@ namespace ASM_WEB_APP.Controllers
             {
                 db.Entry(courseTopic).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/" + courseTopic.ID.ToString(), "CourseTopics");
             }
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", courseTopic.CourseID);
             ViewBag.TopicID = new SelectList(db.Topics, "TopicID", "TopicName", courseTopic.TopicID);
@@ -155,7 +181,7 @@ namespace ASM_WEB_APP.Controllers
         }
 
         // GET: CourseTopics/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string con, string act)
         {
             if (id == null)
             {
@@ -166,18 +192,27 @@ namespace ASM_WEB_APP.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Controller = con;
+            ViewBag.Action = act;
             return View(courseTopic);
         }
 
         // POST: CourseTopics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string con, string act)
         {
             CourseTopic courseTopic = db.CourseTopics.Find(id);
+            foreach(var e in db.Enrollments.ToList())
+            {
+                if(e.TopicID == courseTopic.TopicID && e.CourseID == courseTopic.CourseID)
+                {
+                    db.Enrollments.Remove(e);
+                }
+            }
             db.CourseTopics.Remove(courseTopic);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(act, con);
         }
 
         protected override void Dispose(bool disposing)
@@ -187,6 +222,108 @@ namespace ASM_WEB_APP.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddSession(int trainerID)
+        {
+            var courses = db.Courses.ToList();
+            var topics = db.Topics.ToList();
+
+            ViewBag.CourseID = new SelectList(courses, "CourseID", "CourseName");
+            ViewBag.TopicID = new SelectList(topics, "TopicID", "TopicName");
+
+            var trainers = from t in db.Trainers.Where(x => x.TrainerID == trainerID)
+                             select new
+                             {
+                                 Trainer = t,
+                                 TrainerID = t.TrainerID,
+                                 FullName = t.LastName + " " + t.FirstName
+                             };
+            ViewBag.TrainerID = new SelectList(trainers.ToList(), "TrainerID", "FullName");
+            ViewBag.IsError = false;
+            ViewBag.ID = trainerID;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSession([Bind(Include = "ID,CourseID,TopicID,TrainerID")] CourseTopic courseTopic)
+        {
+            
+            foreach(var ctp in db.CourseTopics.ToList())
+            {
+                if(ctp.CourseID == courseTopic.CourseID && ctp.TopicID == courseTopic.TopicID && ctp.TrainerID == courseTopic.TrainerID)
+                {
+                    ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", courseTopic.CourseID);
+                    ViewBag.TopicID = new SelectList(db.Topics, "TopicID", "TopicName", courseTopic.TopicID);
+                    var trainers = from t in db.Trainers.Where(x => x.TrainerID == courseTopic.TrainerID)
+                                   select new
+                                   {
+                                       Trainer = t,
+                                       TrainerID = t.TrainerID,
+                                       FullName = t.LastName + " " + t.FirstName
+                                   };
+                    ViewBag.TrainerID = new SelectList(trainers.ToList(), "TrainerID", "FullName", courseTopic.TrainerID);
+                    ViewBag.IsError = true;
+                    ViewBag.ID = courseTopic.TrainerID;
+                    return View(courseTopic);
+                }
+            }
+            db.CourseTopics.Add(courseTopic);
+            db.SaveChanges();
+
+            return RedirectToAction("Details/" + courseTopic.TrainerID.ToString(), "Trainers"); 
+        }
+
+        public ActionResult AddTopic(int courseID)
+        {
+            var courses = db.Courses.Where(c => c.CourseID == courseID).ToList();
+            var topics = db.Topics.ToList();
+
+            ViewBag.CourseID = new SelectList(courses, "CourseID", "CourseName");
+            ViewBag.TopicID = new SelectList(topics, "TopicID", "TopicName");
+
+            var trainers = from t in db.Trainers
+                           select new
+                           {
+                               Trainee = t,
+                               TrainerID = t.TrainerID,
+                               FullName = t.LastName + " " + t.FirstName
+                           };
+            ViewBag.TrainerID = new SelectList(trainers.ToList(), "TrainerID", "FullName");
+            ViewBag.IsError = false;
+            ViewBag.ID = courseID;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTopic([Bind(Include = "ID,CourseID,TopicID,TrainerID")] CourseTopic courseTopic)
+        {
+
+            foreach (var ctp in db.CourseTopics.ToList())
+            {
+                if (ctp.CourseID == courseTopic.CourseID && ctp.TopicID == courseTopic.TopicID && ctp.TrainerID == courseTopic.TrainerID)
+                {
+                    ViewBag.CourseID = new SelectList(db.Courses.Where(c => c.CourseID == courseTopic.CourseID), "CourseID", "CourseName", courseTopic.CourseID);
+                    ViewBag.TopicID = new SelectList(db.Topics, "TopicID", "TopicName", courseTopic.TopicID);
+                    var trainers = from t in db.Trainers
+                                   select new
+                                   {
+                                       Trainee = t,
+                                       TrainerID = t.TrainerID,
+                                       FullName = t.LastName + " " + t.FirstName
+                                   };
+                    ViewBag.TrainerID = new SelectList(trainers.ToList(), "TrainerID", "FullName", courseTopic.TrainerID);
+                    ViewBag.ID = courseTopic.CourseID;
+                    ViewBag.IsError = true;
+                    return View(courseTopic);
+                }
+            }
+            db.CourseTopics.Add(courseTopic);
+            db.SaveChanges();
+
+            return RedirectToAction("Details/" + courseTopic.CourseID.ToString(), "Courses");
         }
     }
 }

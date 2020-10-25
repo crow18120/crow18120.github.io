@@ -45,14 +45,19 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
+    @if (ViewBag.Mess)
+    {
+        <p class="text-danger">Can't delete. This Trainer already has Courses to train.</p>
+    }
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        @Html.ActionLink("Back to List", "Index", "Trainers", htmlAttributes: new { @class = "btn btn-default col-md-1" })
-        <input type="submit" value="Delete" class="btn btn-danger col-md-1" />
-        <br />
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+
+            @Html.ActionLink("Back to List", "Index", "Trainers", htmlAttributes: new { @class = "btn btn-default" })
+
+        </div>
     }
 </div>

@@ -16,9 +16,26 @@ namespace ASM_WEB_APP.Controllers
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: Trainers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string SearchTrainer)
         {
-            return View(db.Trainers.ToList());
+            ViewBag.TrainerSortParm = String.IsNullOrEmpty(sortOrder) ? "trainer_desc" : "";
+
+            var trainers = from s in db.Trainers select s;
+            if (!String.IsNullOrEmpty(SearchTrainer))
+            {
+                trainers = trainers.Where(s => (s.LastName + " " + s.FirstName).Contains(SearchTrainer));
+            }
+
+            switch (sortOrder)
+            {
+                case "trainer_desc":
+                    trainers = trainers.OrderByDescending(s => s.FirstName);
+                    break;
+                default:
+                    trainers = trainers.OrderBy(s => s.FirstName);
+                    break;
+            }
+            return View(trainers);
         }
 
         // GET: Trainers/Details/5
@@ -26,13 +43,22 @@ namespace ASM_WEB_APP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                foreach (var item in db.Trainers.ToList())
+                {
+                    if (item.UserName==User.Identity.Name)
+                    {
+                        id = item.TrainerID;
+                    }
+                }
             }
             Trainer trainer = db.Trainers.Find(id);
             if (trainer == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CourseTopics = db.CourseTopics.Where(x => x.TrainerID == id).ToList();
+
             return View(trainer);
         }
 
@@ -53,6 +79,9 @@ namespace ASM_WEB_APP.Controllers
             {
                 db.Trainers.Add(trainer);
                 db.SaveChanges();
+
+                AuthenController.CreateAccount(trainer.UserName, "123456", "Trainer");
+
                 return RedirectToAction("Index");
             }
 
@@ -79,13 +108,15 @@ namespace ASM_WEB_APP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TrainerID,LastName,FirstName,Address")] Trainer trainer)
+        public ActionResult Edit([Bind(Include = "TrainerID,LastName,FirstName,UserName,Address")] Trainer trainer)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(trainer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+
+                return RedirectToAction("Details/" + trainer.TrainerID.ToString(), "Trainers");
             }
             return View(trainer);
         }
@@ -98,6 +129,7 @@ namespace ASM_WEB_APP.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Trainer trainer = db.Trainers.Find(id);
+            ViewBag.Mess = false;
             if (trainer == null)
             {
                 return HttpNotFound();
@@ -110,6 +142,11 @@ namespace ASM_WEB_APP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if(db.CourseTopics.Where(c => c.TrainerID == id).ToList().Count != 0)
+            {
+                ViewBag.Mess = true;
+                return View(db.Trainers.Find(id));
+            }
             Trainer trainer = db.Trainers.Find(id);
             db.Trainers.Remove(trainer);
             db.SaveChanges();
@@ -148,7 +185,7 @@ namespace ASM_WEB_APP.Controllers
                 Trainer trainer = db.Trainers.Find(trainerID);
                 return View(trainer);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Details/" + trainerID.ToString(), "Trainers");
         }
     }
 }

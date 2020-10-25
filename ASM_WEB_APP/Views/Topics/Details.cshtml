@@ -6,7 +6,9 @@
 }
 
 <h2>Details</h2>
-
+<p>
+    @Html.ActionLink("Back to List", "Index", "Topics", null, htmlAttributes: new { @class = "btn btn-default"})
+</p>
 <div>
     <h4>Topic</h4>
     <hr />
@@ -30,6 +32,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TopicID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit Topic", "Edit", "Topics", new { id = Model.TopicID }, htmlAttributes: new { @class = "btn btn-primary"})
 </p>

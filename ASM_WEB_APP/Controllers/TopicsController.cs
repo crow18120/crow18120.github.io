@@ -16,9 +16,26 @@ namespace ASM_WEB_APP.Controllers
         private AsmWebAppDBEntities db = new AsmWebAppDBEntities();
 
         // GET: Topics
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string SearchTopic)
         {
-            return View(db.Topics.ToList());
+            ViewBag.TopicSortParm = String.IsNullOrEmpty(sortOrder) ? "trainee_desc" : "";
+
+            var topics = from s in db.Topics select s;
+            if (!String.IsNullOrEmpty(SearchTopic))
+            {
+                topics = topics.Where(s => s.TopicName.Contains(SearchTopic));
+            }
+
+            switch (sortOrder)
+            {
+                case "trainee_desc":
+                    topics = topics.OrderByDescending(s => s.TopicName);
+                    break;
+                default:
+                    topics = topics.OrderBy(s => s.TopicName);
+                    break;
+            }
+            return View(topics);
         }
 
         // GET: Topics/Details/5
@@ -111,6 +128,16 @@ namespace ASM_WEB_APP.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Topic topic = db.Topics.Find(id);
+            var enrollments = db.Enrollments.Where(e => e.TopicID == id).ToList();
+            var coursetopics = db.CourseTopics.Where(ctp => ctp.TopicID == id).ToList();
+            foreach(var e in enrollments)
+            {
+                db.Enrollments.Remove(e);
+            }
+            foreach(var ctp in coursetopics)
+            {
+                db.CourseTopics.Remove(ctp);
+            }
             db.Topics.Remove(topic);
             db.SaveChanges();
             return RedirectToAction("Index");

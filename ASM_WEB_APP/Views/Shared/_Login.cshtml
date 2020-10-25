@@ -12,6 +12,14 @@
     {
         @Html.Partial("_StaffMenu")
     }
+    if (User.IsInRole("Trainer"))
+    {
+        @Html.Partial("_TrainerMenu")
+    }
+    if (User.IsInRole("Trainee"))
+    {
+        @Html.Partial("_TraineeMenu")
+    }
 }
 
 else

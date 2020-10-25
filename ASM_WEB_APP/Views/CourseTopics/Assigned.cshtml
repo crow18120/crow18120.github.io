@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ASM_WEB_APP.Models.CourseTopic>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Course topic assigned</h2>
+<table class="table">
+    <tr>
+        <th>
+            Course
+        </th>
+        <th>
+            Topic
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Course.CourseName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Topic.TopicName)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-default col-md-4" })
+    </td>
+
+</tr>
+    }
+
+</table>
+
