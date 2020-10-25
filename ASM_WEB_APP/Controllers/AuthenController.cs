@@ -97,6 +97,14 @@ namespace ASM_WEB_APP.Controllers
             userManager.AddToRole(user.Id, role);
         }
 
+        public static void DeleteAccount(string userName)
+        {
+            var userStore = new UserStore<IdentityUser>();
+            var userManager = new UserManager<IdentityUser>(userStore);
+
+            userManager.Delete(FindUser(userName)); 
+        }
+
         public static IdentityUser FindUser(string username)
         {
             var userStore = new UserStore<IdentityUser>();

@@ -166,6 +166,7 @@ on new { ctp.CourseID, ctp.TopicID } equals new { e.CourseID, e.TopicID }
             {
                 db.Enrollments.Remove(e);
             }
+            AuthenController.DeleteAccount(trainee.UserName);
             db.Trainees.Remove(trainee);
             db.SaveChanges();
             return RedirectToAction("Index");

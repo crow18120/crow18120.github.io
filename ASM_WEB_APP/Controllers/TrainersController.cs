@@ -150,6 +150,7 @@ namespace ASM_WEB_APP.Controllers
             Trainer trainer = db.Trainers.Find(id);
             db.Trainers.Remove(trainer);
             db.SaveChanges();
+            AuthenController.DeleteAccount(trainer.UserName);
             return RedirectToAction("Index");
         }
 

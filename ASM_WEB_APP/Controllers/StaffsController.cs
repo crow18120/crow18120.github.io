@@ -137,6 +137,7 @@ namespace ASM_WEB_APP.Controllers
             Staff staff = db.Staffs.Find(id);
             db.Staffs.Remove(staff);
             db.SaveChanges();
+            AuthenController.DeleteAccount(staff.UserName);
             return RedirectToAction("Index");
         }
 
