@@ -1,0 +1,122 @@
+﻿@model ASM_WEB_APP.Models.CourseTopic
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<p>
+    @if (User.IsInRole("Staff"))
+    {
+    @Html.ActionLink("Go to Session List", "Index", "CourseTopics", htmlAttributes: new { @class = "btn btn-default" })
+    @Html.ActionLink("Go to Trainer Detail", "Details", "Trainers", new { id = Model.TrainerID }, htmlAttributes: new { @class = "btn btn-default" })
+    }
+    @if(User.IsInRole("Trainer"))
+    {
+        @Html.ActionLink("Back", "Assigned", "CourseTopics", null, htmlAttributes: new { @class = "btn btn-default" })
+    }
+</p>
+<div>
+    <h3>Session</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic.TopicName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic.TopicName)
+        </dd>
+
+        <dt>
+            Trainer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainer.LastName)
+            @Html.DisplayFor(model => model.Trainer.FirstName)
+        </dd>
+
+    </dl>
+    <p>
+        @if (User.IsInRole("Staff"))
+        {            
+            @Html.ActionLink("Edit Session", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })
+        }
+    </p>
+</div>
+<div>
+    <h3>List of Trainees</h3>
+    <p>
+        @if (User.IsInRole("Staff") && (!ViewBag.IsFull))
+        {
+            @Html.ActionLink("Add Trainee", "AddTrainee", "Enrollments", new { courseID = Model.CourseID, topicID = Model.TopicID }, htmlAttributes: new { @class = "btn btn-warning" })
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Trainee
+            </th>
+            @if (User.IsInRole("Staff"))
+            {
+                <th>
+                    UserName
+                </th>
+            }
+            <th>
+                Address
+            </th>
+            <th>
+                Grade
+            </th>
+            <th></th>
+        </tr>
+        
+        @foreach (var item in ViewBag.Enrollments)
+        {
+            <tr>
+                <td>
+                    @item.Trainee.LastName 
+                    @item.Trainee.FirstName
+                </td>
+                @if (User.IsInRole("Staff"))
+                {
+                <td>
+                    @item.Trainee.UserName
+                </td>
+                }
+                <td>
+                    @item.Trainee.Address
+                </td>
+                <td>
+                    @item.Grade
+                    @if(User.IsInRole("Trainer")&&item.Grade == null)
+                    {
+                        @Html.ActionLink("Mark", "MarkGrade", "Enrollments", new { id = item.ID, id_ctp = Model.ID }, null)
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Staff"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.ID, con = "CourseTopics", act = "Details/" + Model.ID.ToString(), ctp_id = Model.ID }, htmlAttributes: new { @class = "btn btn-danger col-md-6" })
+                    }
+                    @if (User.IsInRole("Trainer") && item.Grade != null)
+                    {
+                        @Html.ActionLink("Edit", "EditGrade", "Enrollments", new { id = item.ID, ctp_id = Model.ID }, htmlAttributes: new { @class = "btn btn-danger col-md-6" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

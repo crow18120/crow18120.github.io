@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ASM_WEB_APP.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enrollments assigned</h2>
+<div>
+    <h3>List of Topics</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Course
+            </th>
+            <th>
+                Topic
+            </th>
+            <th>
+                Trainer
+            </th>
+            <th>
+                Grade
+            </th>
+        </tr>
+        @foreach (var item in ViewBag.Info)
+        {
+            <tr>
+                <td>
+                    @item.CourseName
+                </td>
+                <td>
+                    @item.TopicName
+                </td>
+                <td>
+                    @item.TrainerName
+                </td>
+                <td>
+                    @item.Grade
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+
