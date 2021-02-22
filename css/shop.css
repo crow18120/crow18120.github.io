@@ -16,7 +16,15 @@
     padding: 0px;
 }
 
+.ten-bia ul {
+    padding: 0px;
+}
+
 .anh-bia li {
+    margin: 5px 0px;
+}
+
+.anh-bia form {
     display: flex;
     align-items: center;
     margin: 5px 0px;

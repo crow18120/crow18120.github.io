@@ -41,10 +41,11 @@ function active_btn_dot_file_item(nameFileItem) {
         else {
             list_file.filter('.file-item:lt(4)').addClass('dp-none');
         }
-        console.log(list_file);
-        num = $(pre_active_dots).text();
 
         file_item_quote(nameFileItem);
+        if($(window).width() < 450) {
+            resize_dots(nameFileItem);
+        }
 
         if (list.filter('.number-dot:first').hasClass('active-dots')) {
             list.filter('.pre-dot').addClass('dp-none');
@@ -66,11 +67,38 @@ function active_btn_dot_file_item(nameFileItem) {
     })
 };
 
+function resize_dots(nameFileItem) {
+    let dotNum = nameFileItem + ' .number-dot';
+    let activeDot = nameFileItem + ' .active-dots';
+    console.log($(dotNum).length);
+    if($(window).width() < 450) {
+        $(dotNum).addClass('dp-none');
+        $(activeDot).removeClass('dp-none');
+        if($(activeDot).text() == 1) {
+            $(dotNum).filter('.number-dot:lt(3)').removeClass('dp-none');
+        }
+        else if ($(activeDot).text() == $(dotNum).length) {
+            $(dotNum).filter('.number-dot:gt(' + ($(activeDot).text() - 4) + ')').removeClass('dp-none');
+        }
+        else {
+            $(dotNum).filter('.number-dot:eq(' + ($(activeDot).text() - 2) + ')').removeClass('dp-none');
+            $(dotNum).filter('.number-dot:eq(' + ($(activeDot).text()) + ')').removeClass('dp-none');
+        }
+    }
+    else {
+        $(dotNum).removeClass('dp-none');
+    }
+}
+
 function file_item_quote(nameFileItem) {
     let item = nameFileItem + ' .file-item .quote';
     let item_description = nameFileItem + ' .file-item .quote-excerpt';
     let listItem = $(item);
-    if ($(window).width() < 600) {
+    if ($(window).width() < 600 && $(window).width() > 500) {
+        listItem.css('width', '120%');
+        $(item_description).removeClass('dp-none');
+    }
+    else if ($(window).width() <= 500) {
         listItem.css('width', '100%');
         $(item_description).addClass('dp-none');
     }
@@ -78,6 +106,8 @@ function file_item_quote(nameFileItem) {
         listItem.css('width', '150%');
         $(item_description).removeClass('dp-none');
     }
+
+
     for (i = 0; i < listItem.length; i++) {
         if ($(listItem[i]).offset().left + $(listItem[i]).width() > $(window).width()) {
             $(listItem[i]).addClass('quote-left');

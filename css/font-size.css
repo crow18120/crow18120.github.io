@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
@@ -71,6 +71,7 @@ i:before {
     height: 27px;
     background-color: #08BBB7;
     transform: none;
+    margin-bottom: 1px;
 }
 
 .icon:before {
@@ -181,7 +182,7 @@ i:before {
 }
 
 .shop .file-item:hover {
-    box-shadow:  0px 0px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .quote {
@@ -329,7 +330,7 @@ i:before {
     width: 100%;
 }
 
-.banner img{
+.banner img {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -363,6 +364,10 @@ i:before {
     color: #08bbb7;
 }
 
+.dp-none {
+    display: none;
+}
+
 .dp-block {
     display: block;
 }
@@ -378,46 +383,68 @@ i:before {
     .font-18px {
         font-size: 16px;
     }
-    
     .font-16px {
         font-size: 15px;
     }
-    
     h3 {
         font-size: 20px;
         margin: 0px;
     }
-    
     h2 {
         font-size: 32px;
         margin: 0px;
     }
-    
     h1 {
         font-size: 40px;
     }
 }
 
 @media only screen and (max-width: 576px) {
-    .font-18px {
-        font-size: 16px;
-    }
-    
-    .font-16px {
-        font-size: 15px;
-    }
-    
     h3 {
         font-size: 18px;
         margin: 0px;
     }
-    
     h2 {
         font-size: 26px;
         margin: 0px;
     }
-    
     h1 {
         font-size: 32px;
+    }
+    .icon {
+        width: 23px;
+        height: 23px;
+    }
+    .icon:before {
+        font-size: 11px;
+    }
+    .file-items {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .quote {
+        transform: translateX(20px);
+    }
+    .quote-left {
+        transform: translateX(-20px);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .file-item {
+        padding: 0px;
+    }
+
+    .file-button {
+        right: 0px;
+    }
+
+    .quote, .quote-left {
+        margin: 0px;
+        transform: translateY(30px);
+    }
+
+    .file-item:hover .quote, .file-item:hover .quote-left {
+        transform: translateY(0px);
     }
 }

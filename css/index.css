@@ -85,6 +85,11 @@
     padding: 20px 0px;
 }
 
+.banner-title {
+    max-width: 80%;
+    margin: auto;
+}
+
 .banner-content {
     margin: 20px 0px;
 }
@@ -95,6 +100,7 @@
 }
 
 .banner-text-form {
+    max-width: 80%;
     width: 330px;
     padding: 5px 15px;
 }
@@ -113,6 +119,10 @@
     margin-left: 20px;
 }
 
+.dangky-mail .banner-content {
+    margin-bottom: 0px;
+}
+
 .timkiem .banner-content {
     display: flex;
     flex-direction: column;
@@ -120,7 +130,7 @@
     margin-bottom: 0px;
 }
 
-.timkiem .banner-text-form {
+.banner-text-form {
     margin-bottom: 15px;
 }
 
@@ -260,5 +270,31 @@
     .category img {
         width: 100%;
         height: auto;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .category-manga {
+        padding: 30px 50px;
+    }
+
+    .category {
+        width: 120px;
+        height: 120px;
+    }
+
+    .category-name {
+        transform: translate(-50%, 135%);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .category {
+        width: 150px;
+        height: 150px;
+    }
+
+    .category-name {
+        transform: translate(-50%, 200%);
     }
 }

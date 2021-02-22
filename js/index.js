@@ -5,8 +5,8 @@ $(function () {
     $('#expan-banner-btn').click(function () {
         $('.normal-search').hide();
         $('.advance-search').show();
-        
-        if($('.timkiem .banner-text').height() > $('.timkiem img').height()) {
+
+        if ($('.timkiem .banner-text').height() > $('.timkiem img').height()) {
             $('.timkiem img').css('height', '100%');
         }
     })
@@ -24,10 +24,16 @@ $(function () {
 
     file_item_quote('#update-manga');
     file_item_quote('#full-manga');
+    resize_dots('#update-manga');
+    resize_dots('#full-manga');
+    resize_dots('#shop');
 
     $(window).resize(function () {
         file_item_quote('#update-manga');
         file_item_quote('#full-manga');
+        resize_dots('#update-manga');
+        resize_dots('#full-manga');
+        resize_dots('#shop');
     })
 });
 
@@ -52,7 +58,6 @@ function select_box() {
     var x, i, j, l, ll, selElmnt, a, b, c;
     /*look for any elements with the class "custom-select":*/
     x = document.getElementsByClassName("custom-select");
-    console.log(x);
     l = x.length;
     for (i = 0; i < l; i++) {
         selElmnt = x[i].getElementsByTagName("select")[0];
@@ -169,6 +174,14 @@ function carousel(className) {
                     dots: false,
                     slidesToShow: 2,
                     slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 400,
+                settings: {
+                    dots: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
                 }
             }
         ]
