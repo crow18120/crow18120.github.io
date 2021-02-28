@@ -5,7 +5,7 @@ $(function () {
     $('#expan-banner-btn').click(function () {
         $('.normal-search').hide();
         $('.advance-search').show();
-
+        alert($(window).width());
         if ($('.timkiem .banner-text').height() > $('.timkiem img').height()) {
             $('.timkiem img').css('height', '100%');
         }
