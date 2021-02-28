@@ -17,6 +17,12 @@ $(function () {
         $('.timkiem img').css('height', 'auto');
     })
 
+    var listItem = $('.shop .item-feature-icon span');
+
+    listItem.click(function() {
+        window.location.href = "shop.html#other-product";
+    })
+
     active_btn_dot_file_item('#update-manga');
     active_btn_dot_file_item('#full-manga');
     active_btn_dot_file_item('#shop');

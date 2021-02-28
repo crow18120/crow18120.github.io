@@ -135,6 +135,23 @@
     display: none;
 }
 
+#btn-header-cart i::after{
+    content: attr(data-content);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    z-index: 3;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    top: 100%;
+    left: 100%;
+    transform: translate(-75%, -75%);
+}
+
 @media screen and (max-width: 992px) {
     #header-hamburger {
         display: flex;

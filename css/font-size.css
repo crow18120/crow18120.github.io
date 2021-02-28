@@ -283,9 +283,19 @@ i:before {
     padding: 2.5px;
 }
 
-.item-feature-icon span:hover {
+.item-feature-icon span:before {
+    font-size: 16px;
+}
+
+.item-feature-icon span:hover:before{
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.active-item-feature-icon {
     color: red;
 }
+
 
 .file-dots {
     padding: 0px;
@@ -368,8 +378,16 @@ i:before {
     display: none;
 }
 
+.dp-none-after:after {
+    display: none !important;
+}
+
 .dp-block {
     display: block;
+}
+
+.dp-flex {
+    display: flex;
 }
 
 @media only screen and (max-width: 992px) {
@@ -396,6 +414,14 @@ i:before {
     }
     h1 {
         font-size: 40px;
+    }
+
+    .item-feature-icon span:before {
+        font-size: 15px;
+    }
+    
+    .item-feature-icon span:hover:before{
+        font-size: 16px;
     }
 }
 

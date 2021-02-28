@@ -33,7 +33,6 @@ function active_btn_dot_file_item(nameFileItem) {
         let new_num = $(new_active_dots).text();
 
         list_file.removeClass('dp-none');
-        console.log(new_num);
 
         if (new_num % 2 === 1) {
             list_file.filter('.file-item:gt(3)').addClass('dp-none');
@@ -70,7 +69,6 @@ function active_btn_dot_file_item(nameFileItem) {
 function resize_dots(nameFileItem) {
     let dotNum = nameFileItem + ' .number-dot';
     let activeDot = nameFileItem + ' .active-dots';
-    console.log($(dotNum).length);
     if($(window).width() < 450) {
         $(dotNum).addClass('dp-none');
         $(activeDot).removeClass('dp-none');

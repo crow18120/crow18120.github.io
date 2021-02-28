@@ -10,6 +10,7 @@
 .ten-bia {
     position: absolute;
     text-align: center;
+    width: fit-content;
     color: #fff;
     top: 50%;
     left: 50%;
