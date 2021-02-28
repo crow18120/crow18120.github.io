@@ -26,10 +26,14 @@ $(function () {
     active_btn_dot_file_item('#update-manga');
     active_btn_dot_file_item('#full-manga');
     active_btn_dot_file_item('#shop');
-
+    carousel('.categories');
 
     file_item_quote('#update-manga');
     file_item_quote('#full-manga');
+
+    file_item_quote('#update-manga');
+    file_item_quote('#full-manga');
+    
     resize_dots('#update-manga');
     resize_dots('#full-manga');
     resize_dots('#shop');
@@ -43,7 +47,6 @@ $(function () {
     })
 });
 
-carousel('.categories');
 
 let inputEmail = document.getElementById('email');
 inputEmail.oninvalid = function (event) {
@@ -183,7 +186,7 @@ function carousel(className) {
                 }
             },
             {
-                breakpoint: 400,
+                breakpoint: 401,
                 settings: {
                     dots: false,
                     slidesToShow: 1,

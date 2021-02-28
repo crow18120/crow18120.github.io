@@ -42,7 +42,7 @@ function active_btn_dot_file_item(nameFileItem) {
         }
 
         file_item_quote(nameFileItem);
-        if($(window).width() < 450) {
+        if ($(window).width() < 450) {
             resize_dots(nameFileItem);
         }
 
@@ -69,10 +69,10 @@ function active_btn_dot_file_item(nameFileItem) {
 function resize_dots(nameFileItem) {
     let dotNum = nameFileItem + ' .number-dot';
     let activeDot = nameFileItem + ' .active-dots';
-    if($(window).width() < 450) {
+    if ($(window).width() < 450) {
         $(dotNum).addClass('dp-none');
         $(activeDot).removeClass('dp-none');
-        if($(activeDot).text() == 1) {
+        if ($(activeDot).text() == 1) {
             $(dotNum).filter('.number-dot:lt(3)').removeClass('dp-none');
         }
         else if ($(activeDot).text() == $(dotNum).length) {
@@ -92,27 +92,29 @@ function file_item_quote(nameFileItem) {
     let item = nameFileItem + ' .file-item .quote';
     let item_description = nameFileItem + ' .file-item .quote-excerpt';
     let listItem = $(item);
-    if ($(window).width() < 600 && $(window).width() > 500) {
-        listItem.css('width', '120%');
-        $(item_description).removeClass('dp-none');
-    }
-    else if ($(window).width() <= 500) {
-        listItem.css('width', '100%');
+    if ($(window).width() <= 500) {
         $(item_description).addClass('dp-none');
     }
     else {
-        listItem.css('width', '150%');
         $(item_description).removeClass('dp-none');
     }
 
-
     for (i = 0; i < listItem.length; i++) {
-        if ($(listItem[i]).offset().left + $(listItem[i]).width() > $(window).width()) {
+        console.log(listItem[i]);
+        console.log($(listItem[i]).offset(), $(listItem[i]).outerWidth(), $(listItem[i]).css('width'), $(window).width())
+        console.log($(listItem[i]).closest('span').css('width'), $(listItem[i]).css('width'));
+        if ($(listItem[i]).offset().left + $(listItem[i]).outerWidth() > $(window).width()) {
             $(listItem[i]).addClass('quote-left');
+            console.log('activated-1');
         }
-        else if ($(listItem[i]).hasClass('quote-left') && $(listItem[i]).offset().left < 0) {
+        console.log(listItem[i]);
+        // console.log($(listItem[i]).offset(), $(listItem[i]).outerWidth(), $(window).width())
+        if ($(listItem[i]).offset().left < 0) {
             $(listItem[i]).removeClass('quote-left');
+            console.log('activated-2');
         }
+        console.log(listItem[i])
+        console.log('...')
     }
 };
 

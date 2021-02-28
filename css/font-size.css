@@ -425,6 +425,12 @@ i:before {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .quote {
+        width: 120%;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     h3 {
         font-size: 18px;
@@ -456,9 +462,15 @@ i:before {
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .quote {
+        width: 100%;
+    }
+}
+
 @media only screen and (max-width: 400px) {
     .file-item {
-        padding: 0px;
+        padding: 10px;
     }
 
     .file-button {
@@ -468,6 +480,16 @@ i:before {
     .quote, .quote-left {
         margin: 0px;
         transform: translateY(30px);
+    }
+
+    .quote {
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+
+    .quote-left {
+        margin-right: 10px;
+        margin-left: 0px;
     }
 
     .file-item:hover .quote, .file-item:hover .quote-left {
