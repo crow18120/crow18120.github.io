@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/anh-bia.css">
     <link rel="stylesheet" href="./css/signin-signup.css">
-    <link rel="stylesheet" href="./css/bxh.css">
     <link rel="stylesheet" href="./css/font-size.css">
+    <link rel="stylesheet" href="./css/bxh.css">
 </head>
 <style>
 </style>
@@ -68,31 +68,46 @@
                 </li>
             </ul>
         </div>
+        <div class="header-cover-screen">
+        </div>
     </header>
     <section class="signin-signup-area">
         <div class="signin-signup">
             <div class="btn-exit-signin-signup"><i class="fas fa-times-circle"></i></div>
-            <div class="sign-title signin">
-                <h2>ĐĂNG NHẬP</h2>
+            <div class="signin">
+                <div class="sign-title">
+                    <h2>ĐĂNG NHẬP</h2>
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Email/SĐT" id="username-signin" required>
+                    <input type="password" placeholder="Mật khẩu" minlength="6" maxlength="15" id="password-signin"
+                        required>
+                    <button class="sign-submit" type="submit" id="submit-signin">
+                        <h3>ĐĂNG NHẬP</h3>
+                    </button>
+                </form>
+                <p class="font-16px">Quên mật khẩu? Nhấn tại <a href="">đây</a></p>
             </div>
-            <div class="sign-title signup">
-                <h2>ĐĂNG KÝ</h2>
+            <div class="signup">
+                <div class="sign-title">
+                    <h2>ĐĂNG KÝ</h2>
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Email/SĐT" id="username-signup" required>
+                    <input type="password" placeholder="Mật khẩu" minlength="6" maxlength="15" id="password-signup"
+                        required>
+                    <div class="checkbox-signpup font-16px signup">
+                        <label class="filter-box">Tôi đã đọc và đồng ý với <a class="important-text" href="">Điều khoản
+                                dịch vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
+                            <input type="checkbox" id="checkbox-signup" required>
+                            <span class="checkmark" id="checkbox-checkmark"></span>
+                        </label>
+                    </div>
+                    <button class="sign-submit" type="submit" id="submit-signup">
+                        <h3>ĐĂNG KÝ</h3>
+                    </button>
+                </form>
             </div>
-            <div class="font-18px"><input type="text" placeholder="Email/SĐT"></div>
-            <div class="font-18px"><input type="text" placeholder="Mật khẩu"></div>
-            <div class="checkbox-signpup font-16px signup">
-                <label class="filter-box">Tôi đã đọc và đồng ý với <a class="important-text" href="">Điều khoản dịch
-                        vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label></div>
-            <button class="sign-submit signin" type="submit">
-                <h3>ĐĂNG NHẬP</h3>
-            </button>
-            <button class="sign-submit signup" type="submit">
-                <h3>ĐĂNG KÝ</h3>
-            </button>
-            <p class="font-16px signin">Quên mật khẩu? Nhấn tại <a href="">đây</a></p>
             <div class="sign-or">
                 <hr>
                 <h3><span>HOẶC</span></h3>
@@ -132,7 +147,7 @@
                     <div class="item-top"><i class="fas icon">1</i></div>
                 </div>
                 <div class="item-name font-18px">Kanojo, Okarishimasu</div>
-                <div class="item-feature font-16px">Lượt xem: 16.400</div>        
+                <div class="item-feature font-16px">Lượt xem: 16.400</div>
                 <div class="quote"></div>
             </div>
             <div class="file-item item-top-2 col-lg-4 col-md-4 col-sm-6">
@@ -161,7 +176,7 @@
                 <div class="item-name font-18px">Kanojo, Okarishimasu</div>
                 <div class="item-feature font-16px">Lượt xem: 16.400</div>
                 <div class="quote"></div>
-            </div>       
+            </div>
             <div class="file-item col-lg-4 col-md-4 col-sm-6">
                 <div class="item-image">
                     <img src="./img/bxh/top-reader-5.png" alt="">
@@ -233,42 +248,183 @@
             <a href="" class="file-button font-18px">Xem thêm</a>
         </div>
         <div class="file-row row manga">
-            <div class="file-item col-lg-3 col-md-4 col-sm-6">
-                <img src="./img/index/manga-1.png" alt="">
-                <div class="item-name font-18px">Kanojo, Okarishimasu</div>
-                <div class="item-feature font-16px">Chương 170</div>
-                <div class="quote"></div>
+            <div class="file-item col-md-3 col-6">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-1.png" alt="">
+                        <div class="item-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="item-feature font-16px">Chương 170</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
             </div>
-            <div class="file-item col-lg-3 col-md-4 col-sm-6">
-                <img src="./img/index/manga-2.png" alt="">
-                <div class="item-name font-18px">One Piece</div>
-                <div class="item-feature font-16px">Chương 1001</div>
+            <div class="file-item col-md-3 col-6">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-2.png" alt="">
+                        <div class="item-name font-18px">One Piece</div>
+                        <div class="item-feature font-16px">Chương 1001</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
             </div>
-            <div class="file-item col-lg-3 col-md-4 col-sm-6">
-                <img src="./img/index/manga-3.png" alt="">
-                <div class="item-name font-18px">Spy x Family</div>
-                <div class="item-feature font-16px">Chương 42</div>
+            <div class="file-item col-md-3 col-6">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-3.png" alt="">
+                        <div class="item-name font-18px">Spy x Family</div>
+                        <div class="item-feature font-16px">Chương 42</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
             </div>
-            <div class="file-item col-lg-3 col-md-4 col-sm-6">
-                <img src="./img/index/manga-4.png" alt="">
-                <div class="item-name font-18px">Boku No Hero Academia</div>
-                <div class="item-feature font-16px">Chương 296</div>
+            <div class="file-item col-md-3 col-6">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-4.png" alt="">
+                        <div class="item-name font-18px">Boku No Hero Academia</div>
+                        <div class="item-feature font-16px">Chương 296</div>
+                    </a>
+                    <div class="quote qoute-left font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
+            </div>
+            <div class="file-item col-md-3 col-6 dp-none">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-5.png" alt="">
+                        <div class="item-name font-18px">Kiseijuu</div>
+                        <div class="item-feature font-16px">Chương 64</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
+            </div>
+            <div class="file-item col-md-3 col-6 dp-none">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-6.png" alt="">
+                        <div class="item-name font-18px">Black Clover</div>
+                        <div class="item-feature font-16px">Chương 567</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
+            </div>
+            <div class="file-item col-md-3 col-6 dp-none">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-7.png" alt="">
+                        <div class="item-name font-18px">One Piece</div>
+                        <div class="item-feature font-16px">Chương 1001</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
+            </div>
+            <div class="file-item col-md-3 col-6 dp-none">
+                <span class="total-item">
+                    <a href="./detail-manga.html">
+                        <img src="./img/index/manga-8.png" alt="">
+                        <div class="item-name font-18px">Kimetsu no Yaiba</div>
+                        <div class="item-feature font-16px">Chương 696</div>
+                    </a>
+                    <div class="quote font-16px">
+                        <div class="quote-name font-18px">Kanojo, Okarishimasu</div>
+                        <div class="quote-status">Tình trạng: Đang Cập Nhật</div>
+                        <div class="quote-status">Lượt xem: 352,928</div>
+                        <div class="quote-status">Lượt theo dõi: 1,068</div>
+                        <div class="quote-list-tags"><a href="">School Life</a> <a href="">Ecchi</a> <a
+                                href="">Romance</a> <a href="">Comedy</a> <a href="">Slice of Life</a></div>
+                        <div class="quote-excerpt">Quéo quèo, biết mô tả thế nào đây? một thằng Zin tên là Kazuya 19 năm
+                            mới có bồ không bao lâu thì bị đá , thế là cậu ta phải sử dụng dịch vụ Hẹn hò Thuê, cứ trả
+                            xiền là ngày đó bạn sẽ có bạn gái ngay! Cậu ta đã thuê ...</div>
+                    </div>
+                </span>
             </div>
         </div>
         <ul class="file-dots font-16px">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>›</li>
-            <li>»</li>
+            <li class="btn-dot pre-dot dp-none">«</li>
+            <li class="btn-dot pre-dot dp-none">‹</li>
+            <li class="btn-dot number-dot active-dots" style="margin-left: 74px;">1</li>
+            <li class="btn-dot number-dot">2</li>
+            <li class="btn-dot number-dot">3</li>
+            <li class="btn-dot number-dot">4</li>
+            <li class="btn-dot number-dot">5</li>
+            <li class="btn-dot next-dot">›</li>
+            <li class="btn-dot next-dot">»</li>
         </ul>
     </div>
     <footer class="footer-area">
         <div class="footer-up">
-            <div class="footer row col-10">
-                <div class="footer-app col-lg-4 col-sm-7">
+            <div class="footer-abc">
+                <div class="footer-app">
                     <div class="title-footer">Rainbow Crow</div>
                     <div class="footer-apps">
                         <img src="./img/footer/google-play.png" alt="">
@@ -278,7 +434,7 @@
                         Đọc truyện hay nhất, mới nhất, chất lượng cao nhất Việt Nam
                     </div>
                 </div>
-                <div class="footer-truyen col-lg-2 col-sm-5">
+                <div class="footer-truyen">
                     <div class="title-footer">Truyện</div>
                     <ul class="text-footer">
                         <li><a href="">Truyện mới</a></li>
@@ -287,7 +443,7 @@
                         <li><a href="">Tin tức</a></li>
                     </ul>
                 </div>
-                <div class="footer-media col-lg-3 col-sm-7">
+                <div class="footer-media">
                     <div class="title-footer">Theo dõi chúng tôi</div>
                     <div class="footer-medias">
                         <img src="./img/icon/twitter-logo.svg" alt="">
@@ -296,7 +452,7 @@
                         <img src="./img/icon/pinterest-logo.svg" alt="">
                     </div>
                 </div>
-                <div class="footer-service col-lg-2 col-sm-5">
+                <div class="footer-service">
                     <div class="title-footer">Dịch vụ & Hỗ trợ</div>
                     <ul class="text-footer">
                         <li><a href="">Tài khoản của bạn</a></li>
@@ -315,19 +471,9 @@
         </div>
     </footer>
 </body>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="./library/slick/slick.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="./library/slick/slick.min.js"></script>
 <script src="./js/signin-signup.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<script src="./js/file-item.js"></script>
 
 </html>

@@ -8,7 +8,7 @@ $(function () {
     })
 
     $('.btn-exit-signin-signup').click(function () {
-        $('.signin-signup-area').hide();
+        $('.signin-signup-area').slideToggle('slow');
     })
 
     $('.turn-signup').click(function () {

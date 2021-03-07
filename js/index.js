@@ -5,7 +5,7 @@ $(function () {
     $('#expan-banner-btn').click(function () {
         $('.normal-search').hide();
         $('.advance-search').show();
-        alert($(window).width());
+
         if ($('.timkiem .banner-text').height() > $('.timkiem img').height()) {
             $('.timkiem img').css('height', '100%');
         }
@@ -19,7 +19,7 @@ $(function () {
 
     var listItem = $('.shop .item-feature-icon span');
 
-    listItem.click(function() {
+    listItem.click(function () {
         window.location.href = "shop.html#other-product";
     })
 
@@ -33,7 +33,8 @@ $(function () {
 
     file_item_quote('#update-manga');
     file_item_quote('#full-manga');
-    
+
+
     resize_dots('#update-manga');
     resize_dots('#full-manga');
     resize_dots('#shop');
@@ -45,6 +46,38 @@ $(function () {
         resize_dots('#full-manga');
         resize_dots('#shop');
     })
+});
+
+$('a[href*="#timkiem"]').click(function (event) {
+    // On-page links
+    if (
+        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+        &&
+        location.hostname == this.hostname
+    ) {
+        // Figure out element to scroll to
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        // Does a scroll target exist?
+        if (target.length) {
+            // Only prevent default if animation is actually gonna happen
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: target.offset().top
+            }, 1000, function () {
+                // Callback after animation
+                // Must change focus!
+                var $target = $(target);
+                $target.focus();
+                if ($target.is(":focus")) { // Checking if the target was focused
+                    return false;
+                } else {
+                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                    $target.focus(); // Set focus again
+                };
+            });
+        }
+    }
 });
 
 

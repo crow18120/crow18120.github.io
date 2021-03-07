@@ -60,7 +60,7 @@
                     <i class="fas fa-search btn-header-search btn"></i>
                 </li>
                 <li id="btn-header-cart">
-                    <i class="fas fa-shopping-cart btn"></i>
+                    <a href="/cart.html"><i class="fas fa-shopping-cart btn"></i></a>
                 </li>
                 <li id="btn-header-user">
                     <i class="fas fa-user btn"></i>
@@ -68,7 +68,6 @@
             </ul>
         </div>
     </header>
-
     <section class="signin-signup-area">
         <div class="signin-signup">
             <div class="btn-exit-signin-signup"><i class="fas fa-times-circle"></i></div>
@@ -85,7 +84,8 @@
                         vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
                     <input type="checkbox">
                     <span class="checkmark"></span>
-                </label></div>
+                </label>
+            </div>
             <button class="sign-submit signin" type="submit">
                 <h3>ĐĂNG NHẬP</h3>
             </button>
@@ -122,7 +122,7 @@
 
     <div class="content-order">
         <div class="order-upper row">
-            <div class="order-address col-sm-6">
+            <div class="order-address col-lg-6 col-md-7">
                 <div class="title-order-part font-18px">Thông tin hóa đơn</div>
                 <div class="content-order-part font-16px">
                     <div class="input-order row">
@@ -164,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div class="order-other col-sm-6">
+            <div class="order-other col-lg-6 col-md-5">
                 <div class="order-deliver">
                     <div class="title-order-part font-18px">Hình thức vận chuyển</div>
                     <div class="content-order-part font-16px">
@@ -214,9 +214,9 @@
                 <table>
                     <thead>
                         <tr>
-                            <th class="col-8">Sản phẩm</th>
-                            <th class="col-2">Số lượng</th>
-                            <th class="col-2">Thành tiền</th>
+                            <th class="col-md-8 col-6">Sản phẩm</th>
+                            <th class="col-md-2 col-3">Số lượng</th>
+                            <th class="col-md-2 col-3">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -233,37 +233,37 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="end-order col-sm-6">
+                    <div class="end-order col-sm-6 col-8">
                         <div class="end-order-part row">
-                            <div class="name col-sm-8">Thành tiền: </div>
-                            <div class="price col-sm-4">45.000 VNĐ</div>
+                            <div class="name col-sm-8 col-7">Thành tiền: </div>
+                            <div class="price col-sm-4 col-5">45.000 VNĐ</div>
                         </div>
                         <div class="end-order-part row">
-                            <div class="name col-sm-8">Phí vận chuyển: </div>
-                            <div class="price col-sm-4">50.000 VNĐ</div>
+                            <div class="name col-sm-8 col-7">Phí vận chuyển: </div>
+                            <div class="price col-sm-4 col-5">50.000 VNĐ</div>
                         </div>
                         <div class="end-order-part split-part row">
-                            <div class="name col-sm-8">Khuyến mãi: </div>
-                            <div class="price col-sm-4">0 VNĐ</div>
+                            <div class="name col-sm-8 col-7">Khuyến mãi: </div>
+                            <div class="price col-sm-4 col-5">0 VNĐ</div>
                         </div>
                         <div class="end-order-part row">
-                            <div class="name col-sm-8">Tổng giá trị đơn hàng: </div>
-                            <div class="price col-sm-4 font-18px" style="
+                            <div class="name col-sm-8 col-6">Tổng giá trị đơn hàng: </div>
+                            <div class="price col-sm-4 col-6 font-18px" style="
                             font-weight: 700;">95.000 VNĐ</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="make-order-btn">
-                <button class="col-sm-4">Đặt mua</button>
+                <button class="col-sm-4 col-6">Đặt mua</button>
             </div>
         </div>
     </div>
 
     <footer class="footer-area">
         <div class="footer-up">
-            <div class="footer row col-10">
-                <div class="footer-app col-lg-4 col-sm-7">
+            <div class="footer-abc">
+                <div class="footer-app">
                     <div class="title-footer">Rainbow Crow</div>
                     <div class="footer-apps">
                         <img src="./img/footer/google-play.png" alt="">
@@ -273,7 +273,7 @@
                         Đọc truyện hay nhất, mới nhất, chất lượng cao nhất Việt Nam
                     </div>
                 </div>
-                <div class="footer-truyen col-lg-2 col-sm-5">
+                <div class="footer-truyen">
                     <div class="title-footer">Truyện</div>
                     <ul class="text-footer">
                         <li><a href="">Truyện mới</a></li>
@@ -282,7 +282,7 @@
                         <li><a href="">Tin tức</a></li>
                     </ul>
                 </div>
-                <div class="footer-media col-lg-3 col-sm-7">
+                <div class="footer-media">
                     <div class="title-footer">Theo dõi chúng tôi</div>
                     <div class="footer-medias">
                         <img src="./img/icon/twitter-logo.svg" alt="">
@@ -291,7 +291,7 @@
                         <img src="./img/icon/pinterest-logo.svg" alt="">
                     </div>
                 </div>
-                <div class="footer-service col-lg-2 col-sm-5">
+                <div class="footer-service">
                     <div class="title-footer">Dịch vụ & Hỗ trợ</div>
                     <ul class="text-footer">
                         <li><a href="">Tài khoản của bạn</a></li>
@@ -310,20 +310,9 @@
         </div>
     </footer>
 </body>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="./library/slick/slick.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="./js/signin-signup.js"></script>
-
-</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<script src="./js/file-item.js"></script>
+<script src="./js/category-shop.js"></script>
 
 </html>

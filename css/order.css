@@ -6,7 +6,7 @@
 .content-order {
     max-width: 1200px;
     margin: auto;
-    padding: 0px 100px;
+    padding: 0px 50px;
     margin-top: 20px;
 }
 
@@ -171,6 +171,7 @@
     margin-left: auto;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
+    min-width: 400px;
 }
 
 .price {
@@ -192,3 +193,24 @@
     outline: none;
 }
 
+@media only screen and (max-width: 992px) {
+    .content-order {
+        padding: 0px 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .order-other {
+        margin-top: 20px;
+    }
+
+    .order-payment {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .end-order {
+        min-width: 100%;
+    }
+}

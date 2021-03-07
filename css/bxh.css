@@ -60,3 +60,7 @@
   width: calc(180px*1.2);
   height: auto;
 }
+
+.banner-text {
+  padding: 50px 0px;
+}

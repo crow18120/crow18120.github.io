@@ -12,6 +12,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-width: 80%;
     width: 450px;
     background-color: #ffffff;
     padding: 30px 50px;
@@ -176,4 +177,25 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+@media only screen and (max-width: 576px) {
+    .signin-signup {
+        padding: 30px;
+        padding-bottom: 20px;
+    }
+
+    .sign-title {
+        margin-bottom: 10px;
+    }
+
+    .sign-submit {
+        margin: 10px 0px;
+    }
+} 
+
+@media only screen and (max-width: 400px) {
+    .signin-signup {
+        padding: 30px 15px;
+    }
 }

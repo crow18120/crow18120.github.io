@@ -29,17 +29,7 @@ function active_btn_dot_file_item(nameFileItem) {
             list.filter(filter).addClass('active-dots');
         }
 
-        let new_active_dots = nameFileItem + ' .active-dots';
-        let new_num = $(new_active_dots).text();
-
-        list_file.removeClass('dp-none');
-
-        if (new_num % 2 === 1) {
-            list_file.filter('.file-item:gt(3)').addClass('dp-none');
-        }
-        else {
-            list_file.filter('.file-item:lt(4)').addClass('dp-none');
-        }
+        list_file.toggleClass('dp-none');
 
         file_item_quote(nameFileItem);
         if ($(window).width() < 450) {
@@ -100,21 +90,13 @@ function file_item_quote(nameFileItem) {
     }
 
     for (i = 0; i < listItem.length; i++) {
-        console.log(listItem[i]);
-        console.log($(listItem[i]).offset(), $(listItem[i]).outerWidth(), $(listItem[i]).css('width'), $(window).width())
-        console.log($(listItem[i]).closest('span').css('width'), $(listItem[i]).css('width'));
         if ($(listItem[i]).offset().left + $(listItem[i]).outerWidth() > $(window).width()) {
             $(listItem[i]).addClass('quote-left');
             console.log('activated-1');
         }
-        console.log(listItem[i]);
-        // console.log($(listItem[i]).offset(), $(listItem[i]).outerWidth(), $(window).width())
         if ($(listItem[i]).offset().left < 0) {
             $(listItem[i]).removeClass('quote-left');
-            console.log('activated-2');
         }
-        console.log(listItem[i])
-        console.log('...')
     }
 };
 

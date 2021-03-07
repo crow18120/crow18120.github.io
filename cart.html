@@ -62,7 +62,7 @@
                     <i class="fas fa-search btn-header-search btn"></i>
                 </li>
                 <li id="btn-header-cart">
-                    <i class="fas fa-shopping-cart btn"></i>
+                    <a href="/cart.html"><i class="fas fa-shopping-cart btn"></i></a>
                 </li>
                 <li id="btn-header-user">
                     <i class="fas fa-user btn"></i>
@@ -70,7 +70,6 @@
             </ul>
         </div>
     </header>
-
     <section class="signin-signup-area">
         <div class="signin-signup">
             <div class="btn-exit-signin-signup"><i class="fas fa-times-circle"></i></div>
@@ -87,7 +86,8 @@
                         vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
                     <input type="checkbox">
                     <span class="checkmark"></span>
-                </label></div>
+                </label>
+            </div>
             <button class="sign-submit signin" type="submit">
                 <h3>ĐĂNG NHẬP</h3>
             </button>
@@ -123,45 +123,49 @@
     </div>
 
     <div class="content-cart row">
-        <div class="cart-items col-sm-8">
+        <div class="cart-items col-lg-8">
             <div class="cart-item row">
-                <div class="cart-item-image col-sm-3">
+                <div class="cart-item-image col-sm-3 col-4">
                     <img src="./img/details/detail-item.png" alt="">
                 </div>
-                <div class="cart-item-text col-sm-9 font-18px">
-                    <div class="cart-item-name">Móc khóa Yuzaki
-                        <div class="cart-item-delete">Xóa</div>
-                    </div>
-                    <div class="cart-item-part">
-                        <div class="cart-item-price">22.500 VNĐ</div>
-                        <div class="control-amount">
-                            <button class="btn-decrease-amount"><i class="fas fa-minus icon"></i></button>
-                            <div class="amount-detail-item">1</div>
-                            <button class="btn-increase-amount"><i class="fas fa-plus icon"></i></button>
+                <div class="cart-item-des col-sm-9 col-8">
+                    <div class="cart-item-text font-18px">
+                        <div class="cart-item-name">Móc khóa Yuzaki
+                        </div>
+                        <div class="cart-item-part">
+                            <div class="cart-item-price">22.500 VNĐ</div>
+                            <div class="control-amount">
+                                <button class="btn-decrease-amount"><i class="fas fa-minus icon"></i></button>
+                                <div class="amount-detail-item">1</div>
+                                <button class="btn-increase-amount"><i class="fas fa-plus icon"></i></button>
+                            </div>
                         </div>
                     </div>
+                    <div class="cart-item-delete">Xóa</div>
                 </div>
             </div>
             <div class="cart-item row">
-                <div class="cart-item-image col-sm-3">
+                <div class="cart-item-image col-sm-3 col-4">
                     <img src="./img/details/detail-item.png" alt="">
                 </div>
-                <div class="cart-item-text col-sm-9 font-18px">
-                    <div class="cart-item-name">Móc khóa Yuzaki
-                        <div class="cart-item-delete">Xóa</div>
-                    </div>
-                    <div class="cart-item-part">
-                        <div class="cart-item-price">22.500 VNĐ</div>
-                        <div class="control-amount">
-                            <button class="btn-decrease-amount"><i class="fas fa-minus icon"></i></button>
-                            <div class="amount-detail-item">1</div>
-                            <button class="btn-increase-amount"><i class="fas fa-plus icon"></i></button>
+                <div class="cart-item-des col-sm-9 col-8">
+                    <div class="cart-item-text font-18px">
+                        <div class="cart-item-name">Móc khóa Yuzaki
+                        </div>
+                        <div class="cart-item-part">
+                            <div class="cart-item-price">22.500 VNĐ</div>
+                            <div class="control-amount">
+                                <button class="btn-decrease-amount"><i class="fas fa-minus icon"></i></button>
+                                <div class="amount-detail-item">1</div>
+                                <button class="btn-increase-amount"><i class="fas fa-plus icon"></i></button>
+                            </div>
                         </div>
                     </div>
+                    <div class="cart-item-delete">Xóa</div>
                 </div>
             </div>
         </div>
-        <div class="cart-info col-sm-4">
+        <div class="cart-info col-lg-4">
             <div class="cart-voucher">
                 <div class="font-18px">Mã khuyến mãi</div>
                 <input type="text" class="font-16px" placeholder="Nhập mã khuyến mãi">
@@ -181,18 +185,21 @@
                 <div class="table-cart-price">
                     <div class="row-price final-price">
                         <div class="text-row-price">Thành tiền</div>
-                        <div class="price-row-price"><h3>45.000 VNĐ</h3></div>
+                        <div class="price-row-price">
+                            <h3>45.000 VNĐ</h3>
+                        </div>
                     </div>
                 </div>
+                <a href="./order.html"><button class="make-order-btn font-18px" style="outline: none">Đặt
+                        hàng</button></a>
             </div>
-            <a href="./order.html"><button class="make-order-btn font-18px" style="outline: none">Đặt hàng</button></a>
         </div>
     </div>
 
     <footer class="footer-area">
         <div class="footer-up">
-            <div class="footer row col-10">
-                <div class="footer-app col-lg-4 col-sm-7">
+            <div class="footer-abc">
+                <div class="footer-app">
                     <div class="title-footer">Rainbow Crow</div>
                     <div class="footer-apps">
                         <img src="./img/footer/google-play.png" alt="">
@@ -202,7 +209,7 @@
                         Đọc truyện hay nhất, mới nhất, chất lượng cao nhất Việt Nam
                     </div>
                 </div>
-                <div class="footer-truyen col-lg-2 col-sm-5">
+                <div class="footer-truyen">
                     <div class="title-footer">Truyện</div>
                     <ul class="text-footer">
                         <li><a href="">Truyện mới</a></li>
@@ -211,7 +218,7 @@
                         <li><a href="">Tin tức</a></li>
                     </ul>
                 </div>
-                <div class="footer-media col-lg-3 col-sm-7">
+                <div class="footer-media">
                     <div class="title-footer">Theo dõi chúng tôi</div>
                     <div class="footer-medias">
                         <img src="./img/icon/twitter-logo.svg" alt="">
@@ -220,7 +227,7 @@
                         <img src="./img/icon/pinterest-logo.svg" alt="">
                     </div>
                 </div>
-                <div class="footer-service col-lg-2 col-sm-5">
+                <div class="footer-service">
                     <div class="title-footer">Dịch vụ & Hỗ trợ</div>
                     <ul class="text-footer">
                         <li><a href="">Tài khoản của bạn</a></li>
@@ -239,20 +246,9 @@
         </div>
     </footer>
 </body>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="./library/slick/slick.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="./js/signin-signup.js"></script>
-
-</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<script src="./js/file-item.js"></script>
+<script src="./js/category-shop.js"></script>
 
 </html>
