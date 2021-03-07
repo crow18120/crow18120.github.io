@@ -35,7 +35,7 @@
                     <span><i class="fas fa-user"></i></span>
                     <span>ĐĂNG NHẬP</span>
                 </li>
-                <li>
+                <li class="btn-header-active">
                     <span><i class="fas fa-book"></i></span>
                     <a href="./index.html">MANGA</a>
                 </li>
@@ -58,7 +58,7 @@
                         <input type="text" name="" id="" placeholder="Tìm kiếm">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
-                    <i class="fas fa-search btn-header-search btn"></i>
+                    <a href="#timkiem"><i class="fas fa-search btn-header-search btn"></i></a>
                 </li>
                 <li id="btn-header-cart">
                     <i class="fas fa-shopping-cart btn"></i>
@@ -68,32 +68,46 @@
                 </li>
             </ul>
         </div>
+        <div class="header-cover-screen">
+        </div>
     </header>
-
     <section class="signin-signup-area">
         <div class="signin-signup">
             <div class="btn-exit-signin-signup"><i class="fas fa-times-circle"></i></div>
-            <div class="sign-title signin">
-                <h2>ĐĂNG NHẬP</h2>
+            <div class="signin">
+                <div class="sign-title">
+                    <h2>ĐĂNG NHẬP</h2>
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Email/SĐT" id="username-signin" required>
+                    <input type="password" placeholder="Mật khẩu" minlength="6" maxlength="15" id="password-signin"
+                        required>
+                    <button class="sign-submit" type="submit" id="submit-signin">
+                        <h3>ĐĂNG NHẬP</h3>
+                    </button>
+                </form>
+                <p class="font-16px">Quên mật khẩu? Nhấn tại <a href="">đây</a></p>
             </div>
-            <div class="sign-title signup">
-                <h2>ĐĂNG KÝ</h2>
+            <div class="signup">
+                <div class="sign-title">
+                    <h2>ĐĂNG KÝ</h2>
+                </div>
+                <form action="">
+                    <input type="text" placeholder="Email/SĐT" id="username-signup" required>
+                    <input type="password" placeholder="Mật khẩu" minlength="6" maxlength="15" id="password-signup"
+                        required>
+                    <div class="checkbox-signpup font-16px signup">
+                        <label class="filter-box">Tôi đã đọc và đồng ý với <a class="important-text" href="">Điều khoản
+                                dịch vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
+                            <input type="checkbox" id="checkbox-signup" required>
+                            <span class="checkmark" id="checkbox-checkmark"></span>
+                        </label>
+                    </div>
+                    <button class="sign-submit" type="submit" id="submit-signup">
+                        <h3>ĐĂNG KÝ</h3>
+                    </button>
+                </form>
             </div>
-            <div class="font-18px"><input type="text" placeholder="Email/SĐT"></div>
-            <div class="font-18px"><input type="text" placeholder="Mật khẩu"></div>
-            <div class="checkbox-signpup font-16px signup">
-                <label class="filter-box">Tôi đã đọc và đồng ý với <a class="important-text" href="">Điều khoản dịch
-                        vụ</a> & <a class="important-text" href="">Chính sách bảo mật</a> của RbCrow
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label></div>
-            <button class="sign-submit signin" type="submit">
-                <h3>ĐĂNG NHẬP</h3>
-            </button>
-            <button class="sign-submit signup" type="submit">
-                <h3>ĐĂNG KÝ</h3>
-            </button>
-            <p class="font-16px signin">Quên mật khẩu? Nhấn tại <a href="">đây</a></p>
             <div class="sign-or">
                 <hr>
                 <h3><span>HOẶC</span></h3>
@@ -159,19 +173,62 @@
                     <div class="item-name font-18px">Boku No Hero Academia</div>
                     <div class="item-feature font-16px">Chương 296</div>
                 </div>
-                <div class="file-item col-lg-4 col-md-4 col-sm-6 dp-none">
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
                     <div class="item-image">
                         <img src="./img/index/manga-1.png" alt="">
                     </div>
                     <div class="item-name font-18px">Kanojo, Okarishimasu</div>
                     <div class="item-feature font-16px">Chương 170</div>
                 </div>
-                <div class="file-item col-lg-4 col-md-4 col-sm-6 dp-none">
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
                     <div class="item-image">
                         <img src="./img/index/manga-2.png" alt="">
                     </div>
                     <div class="item-name font-18px">One Piece</div>
                     <div class="item-feature font-16px">Chương 1001</div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-4.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">Boku No Hero Academia</div>
+                    <div class="item-feature font-16px">Chương 296</div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-1.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">Kanojo, Okarishimasu</div>
+                    <div class="item-feature font-16px">Chương 170</div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-2.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">One Piece</div>
+                    <div class="item-feature font-16px">Chương 1001</div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-1.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">Kanojo, Okarishimasu</div>
+                    <div class="item-feature font-16px">Chương 170</div>
+                    <div class="quote"></div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-2.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">One Piece</div>
+                    <div class="item-feature font-16px">Chương 1001</div>
+                </div>
+                <div class="file-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="item-image">
+                        <img src="./img/index/manga-3.png" alt="">
+                    </div>
+                    <div class="item-name font-18px">Spy x Family</div>
+                    <div class="item-feature font-16px">Chương 42</div>
                 </div>
             </div>
             <ul class="file-dots font-16px">
@@ -188,8 +245,8 @@
 
     <footer class="footer-area">
         <div class="footer-up">
-            <div class="footer row col-10">
-                <div class="footer-app col-lg-4 col-sm-7">
+            <div class="footer-abc">
+                <div class="footer-app">
                     <div class="title-footer">Rainbow Crow</div>
                     <div class="footer-apps">
                         <img src="./img/footer/google-play.png" alt="">
@@ -199,7 +256,7 @@
                         Đọc truyện hay nhất, mới nhất, chất lượng cao nhất Việt Nam
                     </div>
                 </div>
-                <div class="footer-truyen col-lg-2 col-sm-5">
+                <div class="footer-truyen">
                     <div class="title-footer">Truyện</div>
                     <ul class="text-footer">
                         <li><a href="">Truyện mới</a></li>
@@ -208,7 +265,7 @@
                         <li><a href="">Tin tức</a></li>
                     </ul>
                 </div>
-                <div class="footer-media col-lg-3 col-sm-7">
+                <div class="footer-media">
                     <div class="title-footer">Theo dõi chúng tôi</div>
                     <div class="footer-medias">
                         <img src="./img/icon/twitter-logo.svg" alt="">
@@ -217,7 +274,7 @@
                         <img src="./img/icon/pinterest-logo.svg" alt="">
                     </div>
                 </div>
-                <div class="footer-service col-lg-2 col-sm-5">
+                <div class="footer-service">
                     <div class="title-footer">Dịch vụ & Hỗ trợ</div>
                     <ul class="text-footer">
                         <li><a href="">Tài khoản của bạn</a></li>
@@ -235,21 +292,11 @@
             </div>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="./library/slick/slick.min.js"></script>
+    <script src="./js/signin-signup.js"></script>
+    <script src="./js/file-item.js"></script>
+    <script src="./js/index.js"></script>
 </body>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="./library/slick/slick.min.js"></script>
-<script src="./js/signin-signup.js"></script>
-
-</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
 
 </html>
