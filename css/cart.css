@@ -15,6 +15,7 @@
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     height: fit-content;
+    box-shadow: 0px 0px 5px 1px  rgba(0, 0, 0, 0.2);
 }
 
 .cart-info {
@@ -82,6 +83,7 @@
 .cart-voucher {
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 30px;
+    box-shadow: 0px 0px 5px 1px  rgba(0, 0, 0, 0.2);
     margin-bottom: 50px;
 }
 
@@ -125,11 +127,12 @@
 
 .table-cart-price {
     border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px 1px  rgba(0, 0, 0, 0.2);
     padding: 30px;
 }
 
-.table-cart-price:last-child {
-    border-top: none;
+.table-cart-price:first-child {
+    border-bottom: none;
 }
 
 .row-price {
@@ -166,6 +169,17 @@
     color: rgba(0, 0, 0, 1);
 }
 
+@media only screen and (max-width: 1150px) {
+    .final-price {
+        display: block;
+    }
+
+    .final-price .price-row-price {
+        text-align: right;
+        margin-top: 10px;
+    }
+}
+
 @media only screen and (max-width: 992px) {
     .cart-info {
         display: flex;
@@ -178,6 +192,14 @@
     }
     .cart-total-price {
         width: 50%;
+    }
+
+    .final-price {
+        display: flex;
+    }
+
+    .final-price .price-row-price {
+        margin: 0px;
     }
 }
 
@@ -223,6 +245,7 @@
     }
     .cart-item-part {
         display: block;
+        margin-top: 0px;
     }
     .cart-item-image {
         width: 40%;
@@ -231,6 +254,19 @@
         width: 60%;
     }
     .control-amount {
-        margin-top: 10px;
+        margin: 5px 0px;
+        font-size: 13px;
+    }
+
+    .control-amount button {
+        height: auto;
+    }
+
+    .control-amount .amount-detail-item {
+        height: 23px;
+    }
+
+    .cart-item-delete {
+        margin-top: 0px;
     }
 }

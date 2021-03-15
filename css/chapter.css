@@ -162,3 +162,16 @@
 .read-chapter-content::-webkit-scrollbar {
     display: none;
 }
+
+@media only screen and (max-width: 800px) {
+    .read-chapter-content img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .comment-content {
+        padding: 0px 15px;
+    }
+}

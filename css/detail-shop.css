@@ -28,15 +28,13 @@
 
 .detail-item-text {
     padding-left: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .price-detail-item {
     color: #08BBB7;
     margin: 11px 0px;
-}
-
-.intro {
-    min-height: 200px;
 }
 
 .shop-detail-item-title {
@@ -170,4 +168,32 @@
     background-color: #08BBB7;
     color: #fff;
     transition: 1s all;
+}
+
+@media only screen and (max-width: 992px) {
+    .content-detail-item {
+        padding: 0px 30px;
+    }
+
+    hr {
+        margin: 8px 0px; 
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .content-detail-item {
+        padding: 0px 10px;
+        margin-bottom: 50px;
+    }
+
+    .detail-item-text {
+        margin-top: 20px;
+        padding: 0px 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .comment-content {
+        padding: 0px 15px;
+    }
 }
