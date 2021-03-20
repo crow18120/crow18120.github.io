@@ -174,4 +174,8 @@
     .comment-content {
         padding: 0px 15px;
     }
+
+    .read-chapter-btn {
+        padding-left: 20px;
+    }
 }
