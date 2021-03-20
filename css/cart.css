@@ -48,6 +48,7 @@
 .cart-item-delete {
     color: red;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .cart-item-part {
@@ -74,10 +75,12 @@
 
 .amount-detail-item {
     margin: 0px 5px;
-    padding: 0px 20px;
+    padding: 0px 10px;
+    width: 60px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 2px;
     height: 28px;
+    text-align: center;
 }
 
 .cart-voucher {
