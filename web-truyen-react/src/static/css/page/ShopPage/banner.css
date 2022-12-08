@@ -1,0 +1,30 @@
+.banner {
+    position: relative;
+    overflow-y: hidden;
+    margin: 30px 0px;
+    width: 100%;
+}
+
+.banner img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    filter: brightness(50%);
+    z-index: -1;
+}
+
+.banner-text {
+    text-align: center;
+    color: #fff;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 0px;
+}
+
+.banner-title {
+    max-width: 80%;
+    margin: auto;
+}
+
