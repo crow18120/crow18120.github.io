@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../../static/css/components/file-items.css";
+import ListButton from "./ListButton";
 
 export default function FileItemsProduct(params) {
   const { id, text, icon, data, hasArrowBtn } = params;

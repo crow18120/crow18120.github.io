@@ -14,6 +14,7 @@ import HomePage from "./page/HomePage";
 import ShopPage from "./page/ShopPage";
 import NewsPage from "./page/NewsPage";
 import ListManga from "./page/ListManga";
+import DetailManga from "./page/DetailManga";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       {/* <HomePage /> */}
       {/* <ShopPage /> */}
       {/* <NewsPage /> */}
-      <ListManga />
+      {/* <ListManga /> */}
+      <DetailManga />
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

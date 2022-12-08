@@ -95,7 +95,7 @@ export default function ListManga() {
         isHalf={true}
       />
       <div className="link-access font-18px">
-        <a href="./index.html">Manga</a> &gt; <span>Thể loại</span>
+        <a href="./index.html">Home</a> &gt; <span>Manga</span>
       </div>
       <div className="content-category-manga row">
         <Filter />
