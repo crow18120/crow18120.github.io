@@ -1,0 +1,73 @@
+.list-chapter {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-manga-chapter {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px 100px;
+    margin-top: 30px;
+}
+
+.button-list-chapter {
+    display: flex;
+    margin-left: auto;
+}
+
+.button-list-chapter .status {
+    color: #08bbb7;
+    margin-right: 30px;
+}
+
+.chapter .status {
+    color: #08bbb7;
+    position: absolute;
+    top: 50%;
+    right: -50%;
+    transform: translate(0%, -50%);
+}
+
+.chapter .status:before {
+    font-size: 18px;
+}
+
+.button-list-chapter button {
+    border: none;
+    background-color: #08bbb7;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 20px;
+    outline: none;
+}
+
+.chapters {
+    max-height: 60vh;
+    overflow-y: scroll;
+    padding-right: 40px;
+    margin: 50px 0px;
+    padding-top: 15px;
+}
+
+.chapter {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.chapter-name {
+    position: relative;
+    min-width: 100px;
+}
+
+.title-manga-chapter {
+    color: #08bbb7;
+    text-decoration: underline;
+    margin-left: 30px;
+}
+
+.chapter a {
+    color: black;
+}

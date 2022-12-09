@@ -5,6 +5,8 @@ import Filter from "./Filter";
 import coverImgSrc from "../../static/img/page/ListManga/cover-image.png";
 import "../../static/css/page/ListManga/list-manga.css";
 
+import { getData } from "../../config/firebase";
+
 const mockData = [
   {
     imgSrc: require("../../static/img/index/manga-1.png"),

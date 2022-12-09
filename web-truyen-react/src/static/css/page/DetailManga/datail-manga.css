@@ -1,0 +1,51 @@
+@media only screen and (max-width: 992px) {
+    .detail-manga-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .detail-manga-intro {
+        margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .detail-manga-chapter {
+        padding: 0px 50px;
+    }
+
+    .chapters {
+        padding-right: 10px;
+        margin: 25px 0px 50px 0px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .detail-manga-content {
+        background: linear-gradient(150deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 31.56%), url(/src/static/img/page/DetailManga/Best-Shonen-Jump-Manga.png);
+    }
+
+    .detail-manga {
+        padding: 15px;
+    }
+
+    .detail-manga-text {
+        margin-top: 30px;
+    }
+
+    .list-chapter {
+        margin-top: 15px;
+    }
+
+    .detail-manga-chapter {
+        padding: 0px 15px;
+    }
+
+    .text-btn-news {
+        padding: 5px 30px;
+    }
+
+    .comment-content {
+        padding: 0px 15px;
+    }
+}

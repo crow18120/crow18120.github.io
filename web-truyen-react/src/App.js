@@ -23,8 +23,8 @@ function App() {
       {/* <HomePage /> */}
       {/* <ShopPage /> */}
       {/* <NewsPage /> */}
-      {/* <ListManga /> */}
-      <DetailManga />
+      <ListManga />
+      {/* <DetailManga /> */}
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
